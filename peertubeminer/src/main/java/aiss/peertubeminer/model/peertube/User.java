@@ -2,7 +2,8 @@
 package aiss.peertubeminer.model.peertube;
 
 import java.util.List;
-import javax.annotation.processing.Generated;
+
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
@@ -12,7 +13,7 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
     "url",
     "name",
     "host",
-    "pictures",
+    "avatars",
     "id",
     "hostRedundancyAllowed",
     "followingCount",
@@ -23,7 +24,7 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
     "updatedAt",
     "userId"
 })
-@Generated("jsonschema2pojo")
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class User {
 
     @JsonProperty("url")
@@ -32,7 +33,7 @@ public class User {
     private String name;
     @JsonProperty("host")
     private String host;
-    @JsonProperty("pictures")
+    @JsonProperty("avatars")
     private List<Pictures> pictures;
     @JsonProperty("id")
     private Integer id;
@@ -83,12 +84,12 @@ public class User {
         this.host = host;
     }
 
-    @JsonProperty("pictures")
+    @JsonProperty("avatars")
     public List<Pictures> getAvatars() {
         return pictures;
     }
 
-    @JsonProperty("pictures")
+    @JsonProperty("avatars")
     public void setAvatars(List<Pictures> pictures) {
         this.pictures = pictures;
     }
@@ -185,66 +186,21 @@ public class User {
 
     @Override
     public String toString() {
-        StringBuilder sb = new StringBuilder();
-        sb.append(User.class.getName()).append('@').append(Integer.toHexString(System.identityHashCode(this))).append('[');
-        sb.append("url");
-        sb.append('=');
-        sb.append(((this.url == null)?"<null>":this.url));
-        sb.append(',');
-        sb.append("name");
-        sb.append('=');
-        sb.append(((this.name == null)?"<null>":this.name));
-        sb.append(',');
-        sb.append("host");
-        sb.append('=');
-        sb.append(((this.host == null)?"<null>":this.host));
-        sb.append(',');
-        sb.append("pictures");
-        sb.append('=');
-        sb.append(((this.pictures == null)?"<null>":this.pictures));
-        sb.append(',');
-        sb.append("id");
-        sb.append('=');
-        sb.append(((this.id == null)?"<null>":this.id));
-        sb.append(',');
-        sb.append("hostRedundancyAllowed");
-        sb.append('=');
-        sb.append(((this.hostRedundancyAllowed == null)?"<null>":this.hostRedundancyAllowed));
-        sb.append(',');
-        sb.append("followingCount");
-        sb.append('=');
-        sb.append(((this.followingCount == null)?"<null>":this.followingCount));
-        sb.append(',');
-        sb.append("followersCount");
-        sb.append('=');
-        sb.append(((this.followersCount == null)?"<null>":this.followersCount));
-        sb.append(',');
-        sb.append("createdAt");
-        sb.append('=');
-        sb.append(((this.createdAt == null)?"<null>":this.createdAt));
-        sb.append(',');
-        sb.append("displayName");
-        sb.append('=');
-        sb.append(((this.displayName == null)?"<null>":this.displayName));
-        sb.append(',');
-        sb.append("description");
-        sb.append('=');
-        sb.append(((this.description == null)?"<null>":this.description));
-        sb.append(',');
-        sb.append("updatedAt");
-        sb.append('=');
-        sb.append(((this.updatedAt == null)?"<null>":this.updatedAt));
-        sb.append(',');
-        sb.append("userId");
-        sb.append('=');
-        sb.append(((this.userId == null)?"<null>":this.userId));
-        sb.append(',');
-        if (sb.charAt((sb.length()- 1)) == ',') {
-            sb.setCharAt((sb.length()- 1), ']');
-        } else {
-            sb.append(']');
-        }
-        return sb.toString();
+        return "User{" +
+                "url='" + url + '\'' +
+                ", name='" + name + '\'' +
+                ", host='" + host + '\'' +
+                ", pictures=" + pictures +
+                ", id=" + id +
+                ", hostRedundancyAllowed=" + hostRedundancyAllowed +
+                ", followingCount=" + followingCount +
+                ", followersCount=" + followersCount +
+                ", createdAt='" + createdAt + '\'' +
+                ", displayName='" + displayName + '\'' +
+                ", description='" + description + '\'' +
+                ", updatedAt='" + updatedAt + '\'' +
+                ", userId=" + userId +
+                '}';
     }
 
 }

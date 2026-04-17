@@ -1,7 +1,7 @@
 
 package aiss.peertubeminer.model.peertube;
 
-import javax.annotation.processing.Generated;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
@@ -11,7 +11,7 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
     "id",
     "label"
 })
-@Generated("jsonschema2pojo")
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class Language {
 
     @JsonProperty("id")
@@ -41,22 +41,10 @@ public class Language {
 
     @Override
     public String toString() {
-        StringBuilder sb = new StringBuilder();
-        sb.append(Language.class.getName()).append('@').append(Integer.toHexString(System.identityHashCode(this))).append('[');
-        sb.append("id");
-        sb.append('=');
-        sb.append(((this.id == null)?"<null>":this.id));
-        sb.append(',');
-        sb.append("label");
-        sb.append('=');
-        sb.append(((this.label == null)?"<null>":this.label));
-        sb.append(',');
-        if (sb.charAt((sb.length()- 1)) == ',') {
-            sb.setCharAt((sb.length()- 1), ']');
-        } else {
-            sb.append(']');
-        }
-        return sb.toString();
+        return "Language{" +
+                "id='" + id + '\'' +
+                ", label='" + label + '\'' +
+                '}';
     }
 
 }

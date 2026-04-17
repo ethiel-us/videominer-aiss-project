@@ -1,8 +1,9 @@
 
 package aiss.peertubeminer.model.peertube;
 
-import java.util.List;
 import javax.annotation.processing.Generated;
+
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
@@ -14,10 +15,7 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
     "shortUUID",
     "url",
     "name",
-    "category",
-    "licence",
     "language",
-    "privacy",
     "nsfw",
     "nsfwFlags",
     "nsfwSummary",
@@ -32,7 +30,6 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
     "dislikes",
     "thumbnailPath",
     "previewPath",
-    "thumbnails",
     "embedPath",
     "createdAt",
     "updatedAt",
@@ -43,7 +40,7 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
     "channel",
     "comments"
 })
-@Generated("jsonschema2pojo")
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class Video {
 
     @JsonProperty("id")
@@ -56,14 +53,8 @@ public class Video {
     private String url;
     @JsonProperty("name")
     private String name;
-    @JsonProperty("category")
-    private Category category;
-    @JsonProperty("licence")
-    private Licence licence;
     @JsonProperty("language")
     private Language language;
-    @JsonProperty("privacy")
-    private Privacy privacy;
     @JsonProperty("nsfw")
     private Boolean nsfw;
     @JsonProperty("nsfwFlags")
@@ -92,8 +83,6 @@ public class Video {
     private String thumbnailPath;
     @JsonProperty("previewPath")
     private String previewPath;
-    @JsonProperty("thumbnails")
-    private List<Thumbnail> thumbnails;
     @JsonProperty("embedPath")
     private String embedPath;
     @JsonProperty("createdAt")
@@ -107,7 +96,7 @@ public class Video {
     @JsonProperty("isLive")
     private Boolean isLive;
     @JsonProperty("account")
-    private Account account;
+    private User user;
     @JsonProperty("channel")
     private Channel channel;
     @JsonProperty("comments")
@@ -163,26 +152,6 @@ public class Video {
         this.name = name;
     }
 
-    @JsonProperty("category")
-    public Category getCategory() {
-        return category;
-    }
-
-    @JsonProperty("category")
-    public void setCategory(Category category) {
-        this.category = category;
-    }
-
-    @JsonProperty("licence")
-    public Licence getLicence() {
-        return licence;
-    }
-
-    @JsonProperty("licence")
-    public void setLicence(Licence licence) {
-        this.licence = licence;
-    }
-
     @JsonProperty("language")
     public Language getLanguage() {
         return language;
@@ -191,16 +160,6 @@ public class Video {
     @JsonProperty("language")
     public void setLanguage(Language language) {
         this.language = language;
-    }
-
-    @JsonProperty("privacy")
-    public Privacy getPrivacy() {
-        return privacy;
-    }
-
-    @JsonProperty("privacy")
-    public void setPrivacy(Privacy privacy) {
-        this.privacy = privacy;
     }
 
     @JsonProperty("nsfw")
@@ -343,16 +302,6 @@ public class Video {
         this.previewPath = previewPath;
     }
 
-    @JsonProperty("thumbnails")
-    public List<Thumbnail> getThumbnails() {
-        return thumbnails;
-    }
-
-    @JsonProperty("thumbnails")
-    public void setThumbnails(List<Thumbnail> thumbnails) {
-        this.thumbnails = thumbnails;
-    }
-
     @JsonProperty("embedPath")
     public String getEmbedPath() {
         return embedPath;
@@ -414,13 +363,13 @@ public class Video {
     }
 
     @JsonProperty("account")
-    public Account getAccount() {
-        return account;
+    public User getUser() {
+        return user;
     }
 
     @JsonProperty("account")
-    public void setAccount(Account account) {
-        this.account = account;
+    public void setUser(User user) {
+        this.user = user;
     }
 
     @JsonProperty("channel")
@@ -445,146 +394,37 @@ public class Video {
 
     @Override
     public String toString() {
-        StringBuilder sb = new StringBuilder();
-        sb.append(Video.class.getName()).append('@').append(Integer.toHexString(System.identityHashCode(this))).append('[');
-        sb.append("id");
-        sb.append('=');
-        sb.append(((this.id == null)?"<null>":this.id));
-        sb.append(',');
-        sb.append("uuid");
-        sb.append('=');
-        sb.append(((this.uuid == null)?"<null>":this.uuid));
-        sb.append(',');
-        sb.append("shortUUID");
-        sb.append('=');
-        sb.append(((this.shortUUID == null)?"<null>":this.shortUUID));
-        sb.append(',');
-        sb.append("url");
-        sb.append('=');
-        sb.append(((this.url == null)?"<null>":this.url));
-        sb.append(',');
-        sb.append("name");
-        sb.append('=');
-        sb.append(((this.name == null)?"<null>":this.name));
-        sb.append(',');
-        sb.append("category");
-        sb.append('=');
-        sb.append(((this.category == null)?"<null>":this.category));
-        sb.append(',');
-        sb.append("licence");
-        sb.append('=');
-        sb.append(((this.licence == null)?"<null>":this.licence));
-        sb.append(',');
-        sb.append("language");
-        sb.append('=');
-        sb.append(((this.language == null)?"<null>":this.language));
-        sb.append(',');
-        sb.append("privacy");
-        sb.append('=');
-        sb.append(((this.privacy == null)?"<null>":this.privacy));
-        sb.append(',');
-        sb.append("nsfw");
-        sb.append('=');
-        sb.append(((this.nsfw == null)?"<null>":this.nsfw));
-        sb.append(',');
-        sb.append("nsfwFlags");
-        sb.append('=');
-        sb.append(((this.nsfwFlags == null)?"<null>":this.nsfwFlags));
-        sb.append(',');
-        sb.append("nsfwSummary");
-        sb.append('=');
-        sb.append(((this.nsfwSummary == null)?"<null>":this.nsfwSummary));
-        sb.append(',');
-        sb.append("truncatedDescription");
-        sb.append('=');
-        sb.append(((this.truncatedDescription == null)?"<null>":this.truncatedDescription));
-        sb.append(',');
-        sb.append("description");
-        sb.append('=');
-        sb.append(((this.description == null)?"<null>":this.description));
-        sb.append(',');
-        sb.append("isLocal");
-        sb.append('=');
-        sb.append(((this.isLocal == null)?"<null>":this.isLocal));
-        sb.append(',');
-        sb.append("duration");
-        sb.append('=');
-        sb.append(((this.duration == null)?"<null>":this.duration));
-        sb.append(',');
-        sb.append("aspectRatio");
-        sb.append('=');
-        sb.append(((this.aspectRatio == null)?"<null>":this.aspectRatio));
-        sb.append(',');
-        sb.append("views");
-        sb.append('=');
-        sb.append(((this.views == null)?"<null>":this.views));
-        sb.append(',');
-        sb.append("viewers");
-        sb.append('=');
-        sb.append(((this.viewers == null)?"<null>":this.viewers));
-        sb.append(',');
-        sb.append("likes");
-        sb.append('=');
-        sb.append(((this.likes == null)?"<null>":this.likes));
-        sb.append(',');
-        sb.append("dislikes");
-        sb.append('=');
-        sb.append(((this.dislikes == null)?"<null>":this.dislikes));
-        sb.append(',');
-        sb.append("thumbnailPath");
-        sb.append('=');
-        sb.append(((this.thumbnailPath == null)?"<null>":this.thumbnailPath));
-        sb.append(',');
-        sb.append("previewPath");
-        sb.append('=');
-        sb.append(((this.previewPath == null)?"<null>":this.previewPath));
-        sb.append(',');
-        sb.append("thumbnails");
-        sb.append('=');
-        sb.append(((this.thumbnails == null)?"<null>":this.thumbnails));
-        sb.append(',');
-        sb.append("embedPath");
-        sb.append('=');
-        sb.append(((this.embedPath == null)?"<null>":this.embedPath));
-        sb.append(',');
-        sb.append("createdAt");
-        sb.append('=');
-        sb.append(((this.createdAt == null)?"<null>":this.createdAt));
-        sb.append(',');
-        sb.append("updatedAt");
-        sb.append('=');
-        sb.append(((this.updatedAt == null)?"<null>":this.updatedAt));
-        sb.append(',');
-        sb.append("publishedAt");
-        sb.append('=');
-        sb.append(((this.publishedAt == null)?"<null>":this.publishedAt));
-        sb.append(',');
-        sb.append("originallyPublishedAt");
-        sb.append('=');
-        sb.append(((this.originallyPublishedAt == null)?"<null>":this.originallyPublishedAt));
-        sb.append(',');
-        sb.append("isLive");
-        sb.append('=');
-        sb.append(((this.isLive == null)?"<null>":this.isLive));
-        sb.append(',');
-        sb.append("account");
-        sb.append('=');
-        sb.append(((this.account == null)?"<null>":this.account));
-        sb.append(',');
-        sb.append("channel");
-        sb.append('=');
-        sb.append(((this.channel == null)?"<null>":this.channel));
-        sb.append(',');
-        sb.append("comments");
-        sb.append('=');
-        sb.append(((this.comments == null)?"<null>":this.comments));
-        sb.append(',');
-        if (sb.charAt((sb.length()- 1)) == ',') {
-            sb.setCharAt((sb.length()- 1), ']');
-        } else {
-            sb.append(']');
-        }
-        return sb.toString();
+        return "Video{" +
+                "id=" + id +
+                ", uuid='" + uuid + '\'' +
+                ", shortUUID='" + shortUUID + '\'' +
+                ", url='" + url + '\'' +
+                ", name='" + name + '\'' +
+                ", language=" + language +
+                ", nsfw=" + nsfw +
+                ", nsfwFlags=" + nsfwFlags +
+                ", nsfwSummary=" + nsfwSummary +
+                ", truncatedDescription='" + truncatedDescription + '\'' +
+                ", description='" + description + '\'' +
+                ", isLocal=" + isLocal +
+                ", duration=" + duration +
+                ", aspectRatio=" + aspectRatio +
+                ", views=" + views +
+                ", viewers=" + viewers +
+                ", likes=" + likes +
+                ", dislikes=" + dislikes +
+                ", thumbnailPath='" + thumbnailPath + '\'' +
+                ", previewPath='" + previewPath + '\'' +
+                ", embedPath='" + embedPath + '\'' +
+                ", createdAt='" + createdAt + '\'' +
+                ", updatedAt='" + updatedAt + '\'' +
+                ", publishedAt='" + publishedAt + '\'' +
+                ", originallyPublishedAt=" + originallyPublishedAt +
+                ", isLive=" + isLive +
+                ", account=" + user +
+                ", channel=" + channel +
+                ", comments=" + comments +
+                '}';
     }
 
 }

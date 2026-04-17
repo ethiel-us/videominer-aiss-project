@@ -1,7 +1,7 @@
 
 package aiss.peertubeminer.model.peertube;
 
-import javax.annotation.processing.Generated;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
@@ -15,7 +15,7 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
     "createdAt",
     "updatedAt"
 })
-@Generated("jsonschema2pojo")
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class Pictures {
 
     @JsonProperty("height")
@@ -93,38 +93,14 @@ public class Pictures {
 
     @Override
     public String toString() {
-        StringBuilder sb = new StringBuilder();
-        sb.append(Pictures.class.getName()).append('@').append(Integer.toHexString(System.identityHashCode(this))).append('[');
-        sb.append("height");
-        sb.append('=');
-        sb.append(((this.height == null)?"<null>":this.height));
-        sb.append(',');
-        sb.append("width");
-        sb.append('=');
-        sb.append(((this.width == null)?"<null>":this.width));
-        sb.append(',');
-        sb.append("path");
-        sb.append('=');
-        sb.append(((this.path == null)?"<null>":this.path));
-        sb.append(',');
-        sb.append("fileUrl");
-        sb.append('=');
-        sb.append(((this.fileUrl == null)?"<null>":this.fileUrl));
-        sb.append(',');
-        sb.append("createdAt");
-        sb.append('=');
-        sb.append(((this.createdAt == null)?"<null>":this.createdAt));
-        sb.append(',');
-        sb.append("updatedAt");
-        sb.append('=');
-        sb.append(((this.updatedAt == null)?"<null>":this.updatedAt));
-        sb.append(',');
-        if (sb.charAt((sb.length()- 1)) == ',') {
-            sb.setCharAt((sb.length()- 1), ']');
-        } else {
-            sb.append(']');
-        }
-        return sb.toString();
+        return "Pictures{" +
+                "height=" + height +
+                ", width=" + width +
+                ", path='" + path + '\'' +
+                ", fileUrl='" + fileUrl + '\'' +
+                ", createdAt='" + createdAt + '\'' +
+                ", updatedAt='" + updatedAt + '\'' +
+                '}';
     }
 
 }

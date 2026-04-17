@@ -1,7 +1,7 @@
 
 package aiss.peertubeminer.model.peertube;
 
-import javax.annotation.processing.Generated;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
@@ -15,7 +15,7 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
     "m3u8Url",
     "updatedAt"
 })
-@Generated("jsonschema2pojo")
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class Caption {
 
     @JsonProperty("language")
@@ -93,38 +93,14 @@ public class Caption {
 
     @Override
     public String toString() {
-        StringBuilder sb = new StringBuilder();
-        sb.append(Caption.class.getName()).append('@').append(Integer.toHexString(System.identityHashCode(this))).append('[');
-        sb.append("language");
-        sb.append('=');
-        sb.append(((this.language == null)?"<null>":this.language));
-        sb.append(',');
-        sb.append("automaticallyGenerated");
-        sb.append('=');
-        sb.append(((this.automaticallyGenerated == null)?"<null>":this.automaticallyGenerated));
-        sb.append(',');
-        sb.append("captionPath");
-        sb.append('=');
-        sb.append(((this.captionPath == null)?"<null>":this.captionPath));
-        sb.append(',');
-        sb.append("fileUrl");
-        sb.append('=');
-        sb.append(((this.fileUrl == null)?"<null>":this.fileUrl));
-        sb.append(',');
-        sb.append("m3u8Url");
-        sb.append('=');
-        sb.append(((this.m3u8Url == null)?"<null>":this.m3u8Url));
-        sb.append(',');
-        sb.append("updatedAt");
-        sb.append('=');
-        sb.append(((this.updatedAt == null)?"<null>":this.updatedAt));
-        sb.append(',');
-        if (sb.charAt((sb.length()- 1)) == ',') {
-            sb.setCharAt((sb.length()- 1), ']');
-        } else {
-            sb.append(']');
-        }
-        return sb.toString();
+        return "Caption{" +
+                "language=" + language +
+                ", automaticallyGenerated=" + automaticallyGenerated +
+                ", captionPath='" + captionPath + '\'' +
+                ", fileUrl='" + fileUrl + '\'' +
+                ", m3u8Url='" + m3u8Url + '\'' +
+                ", updatedAt='" + updatedAt + '\'' +
+                '}';
     }
 
 }

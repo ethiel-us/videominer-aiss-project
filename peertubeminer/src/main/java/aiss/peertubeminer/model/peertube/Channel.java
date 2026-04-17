@@ -2,7 +2,8 @@
 package aiss.peertubeminer.model.peertube;
 
 import java.util.List;
-import javax.annotation.processing.Generated;
+
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
@@ -24,9 +25,9 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
     "support",
     "isLocal",
     "updatedAt",
-    "user"
+    "ownerAccount"
 })
-@Generated("jsonschema2pojo")
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class Channel {
 
     @JsonProperty("url")
@@ -59,7 +60,7 @@ public class Channel {
     private Boolean isLocal;
     @JsonProperty("updatedAt")
     private String updatedAt;
-    @JsonProperty("user")
+    @JsonProperty("ownerAccount")
     private User user;
 
     @JsonProperty("url")
@@ -212,90 +213,36 @@ public class Channel {
         this.updatedAt = updatedAt;
     }
 
-    @JsonProperty("user")
+    @JsonProperty("ownerAccount")
     public User getOwnerAccount() {
         return user;
     }
 
-    @JsonProperty("user")
+    @JsonProperty("ownerAccount")
     public void setOwnerAccount(User user) {
         this.user = user;
     }
 
     @Override
     public String toString() {
-        StringBuilder sb = new StringBuilder();
-        sb.append(Channel.class.getName()).append('@').append(Integer.toHexString(System.identityHashCode(this))).append('[');
-        sb.append("url");
-        sb.append('=');
-        sb.append(((this.url == null)?"<null>":this.url));
-        sb.append(',');
-        sb.append("name");
-        sb.append('=');
-        sb.append(((this.name == null)?"<null>":this.name));
-        sb.append(',');
-        sb.append("host");
-        sb.append('=');
-        sb.append(((this.host == null)?"<null>":this.host));
-        sb.append(',');
-        sb.append("avatars");
-        sb.append('=');
-        sb.append(((this.avatars == null)?"<null>":this.avatars));
-        sb.append(',');
-        sb.append("id");
-        sb.append('=');
-        sb.append(((this.id == null)?"<null>":this.id));
-        sb.append(',');
-        sb.append("hostRedundancyAllowed");
-        sb.append('=');
-        sb.append(((this.hostRedundancyAllowed == null)?"<null>":this.hostRedundancyAllowed));
-        sb.append(',');
-        sb.append("followingCount");
-        sb.append('=');
-        sb.append(((this.followingCount == null)?"<null>":this.followingCount));
-        sb.append(',');
-        sb.append("followersCount");
-        sb.append('=');
-        sb.append(((this.followersCount == null)?"<null>":this.followersCount));
-        sb.append(',');
-        sb.append("createdAt");
-        sb.append('=');
-        sb.append(((this.createdAt == null)?"<null>":this.createdAt));
-        sb.append(',');
-        sb.append("banners");
-        sb.append('=');
-        sb.append(((this.banners == null)?"<null>":this.banners));
-        sb.append(',');
-        sb.append("displayName");
-        sb.append('=');
-        sb.append(((this.displayName == null)?"<null>":this.displayName));
-        sb.append(',');
-        sb.append("description");
-        sb.append('=');
-        sb.append(((this.description == null)?"<null>":this.description));
-        sb.append(',');
-        sb.append("support");
-        sb.append('=');
-        sb.append(((this.support == null)?"<null>":this.support));
-        sb.append(',');
-        sb.append("isLocal");
-        sb.append('=');
-        sb.append(((this.isLocal == null)?"<null>":this.isLocal));
-        sb.append(',');
-        sb.append("updatedAt");
-        sb.append('=');
-        sb.append(((this.updatedAt == null)?"<null>":this.updatedAt));
-        sb.append(',');
-        sb.append("user");
-        sb.append('=');
-        sb.append(((this.user == null)?"<null>":this.user));
-        sb.append(',');
-        if (sb.charAt((sb.length()- 1)) == ',') {
-            sb.setCharAt((sb.length()- 1), ']');
-        } else {
-            sb.append(']');
-        }
-        return sb.toString();
+        return "Channel{" +
+                "url='" + url + '\'' +
+                ", name='" + name + '\'' +
+                ", host='" + host + '\'' +
+                ", avatars=" + avatars +
+                ", id=" + id +
+                ", hostRedundancyAllowed=" + hostRedundancyAllowed +
+                ", followingCount=" + followingCount +
+                ", followersCount=" + followersCount +
+                ", createdAt='" + createdAt + '\'' +
+                ", banners=" + banners +
+                ", displayName='" + displayName + '\'' +
+                ", description='" + description + '\'' +
+                ", support='" + support + '\'' +
+                ", isLocal=" + isLocal +
+                ", updatedAt='" + updatedAt + '\'' +
+                ", ownerAccount=" + user +
+                '}';
     }
 
 }

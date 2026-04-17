@@ -2,7 +2,8 @@
 package aiss.peertubeminer.model.peertube;
 
 import java.util.List;
-import javax.annotation.processing.Generated;
+
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
@@ -12,13 +13,13 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
     "total",
     "data"
 })
-@Generated("jsonschema2pojo")
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class VideoSearch {
 
     @JsonProperty("total")
     private Integer total;
     @JsonProperty("data")
-    private List<Datum> data;
+    private List<Video> data;
 
     @JsonProperty("total")
     public Integer getTotal() {
@@ -31,33 +32,21 @@ public class VideoSearch {
     }
 
     @JsonProperty("data")
-    public List<Datum> getData() {
+    public List<Video> getData() {
         return data;
     }
 
     @JsonProperty("data")
-    public void setData(List<Datum> data) {
+    public void setData(List<Video> data) {
         this.data = data;
     }
 
     @Override
     public String toString() {
-        StringBuilder sb = new StringBuilder();
-        sb.append(VideoSearch.class.getName()).append('@').append(Integer.toHexString(System.identityHashCode(this))).append('[');
-        sb.append("total");
-        sb.append('=');
-        sb.append(((this.total == null)?"<null>":this.total));
-        sb.append(',');
-        sb.append("data");
-        sb.append('=');
-        sb.append(((this.data == null)?"<null>":this.data));
-        sb.append(',');
-        if (sb.charAt((sb.length()- 1)) == ',') {
-            sb.setCharAt((sb.length()- 1), ']');
-        } else {
-            sb.append(']');
-        }
-        return sb.toString();
+        return "VideoSearch{" +
+                "total=" + total +
+                ", data=" + data +
+                '}';
     }
 
 }

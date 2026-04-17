@@ -1,7 +1,7 @@
 
 package aiss.peertubeminer.model.peertube;
 
-import javax.annotation.processing.Generated;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
@@ -23,7 +23,7 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
     "totalReplies",
     "account"
 })
-@Generated("jsonschema2pojo")
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class Comment {
 
     @JsonProperty("id")
@@ -53,7 +53,7 @@ public class Comment {
     @JsonProperty("totalReplies")
     private Integer totalReplies;
     @JsonProperty("account")
-    private Account account;
+    private User user;
 
     @JsonProperty("id")
     public Integer getId() {
@@ -186,81 +186,33 @@ public class Comment {
     }
 
     @JsonProperty("account")
-    public Account getAccount() {
-        return account;
+    public User getUser() {
+        return user;
     }
 
     @JsonProperty("account")
-    public void setAccount(Account account) {
-        this.account = account;
+    public void setUser(User user) {
+        this.user = user;
     }
 
     @Override
     public String toString() {
-        StringBuilder sb = new StringBuilder();
-        sb.append(Comment.class.getName()).append('@').append(Integer.toHexString(System.identityHashCode(this))).append('[');
-        sb.append("id");
-        sb.append('=');
-        sb.append(((this.id == null)?"<null>":this.id));
-        sb.append(',');
-        sb.append("url");
-        sb.append('=');
-        sb.append(((this.url == null)?"<null>":this.url));
-        sb.append(',');
-        sb.append("text");
-        sb.append('=');
-        sb.append(((this.text == null)?"<null>":this.text));
-        sb.append(',');
-        sb.append("threadId");
-        sb.append('=');
-        sb.append(((this.threadId == null)?"<null>":this.threadId));
-        sb.append(',');
-        sb.append("inReplyToCommentId");
-        sb.append('=');
-        sb.append(((this.inReplyToCommentId == null)?"<null>":this.inReplyToCommentId));
-        sb.append(',');
-        sb.append("videoId");
-        sb.append('=');
-        sb.append(((this.videoId == null)?"<null>":this.videoId));
-        sb.append(',');
-        sb.append("createdAt");
-        sb.append('=');
-        sb.append(((this.createdAt == null)?"<null>":this.createdAt));
-        sb.append(',');
-        sb.append("updatedAt");
-        sb.append('=');
-        sb.append(((this.updatedAt == null)?"<null>":this.updatedAt));
-        sb.append(',');
-        sb.append("deletedAt");
-        sb.append('=');
-        sb.append(((this.deletedAt == null)?"<null>":this.deletedAt));
-        sb.append(',');
-        sb.append("heldForReview");
-        sb.append('=');
-        sb.append(((this.heldForReview == null)?"<null>":this.heldForReview));
-        sb.append(',');
-        sb.append("isDeleted");
-        sb.append('=');
-        sb.append(((this.isDeleted == null)?"<null>":this.isDeleted));
-        sb.append(',');
-        sb.append("totalRepliesFromVideoAuthor");
-        sb.append('=');
-        sb.append(((this.totalRepliesFromVideoAuthor == null)?"<null>":this.totalRepliesFromVideoAuthor));
-        sb.append(',');
-        sb.append("totalReplies");
-        sb.append('=');
-        sb.append(((this.totalReplies == null)?"<null>":this.totalReplies));
-        sb.append(',');
-        sb.append("account");
-        sb.append('=');
-        sb.append(((this.account == null)?"<null>":this.account));
-        sb.append(',');
-        if (sb.charAt((sb.length()- 1)) == ',') {
-            sb.setCharAt((sb.length()- 1), ']');
-        } else {
-            sb.append(']');
-        }
-        return sb.toString();
+        return "Comment{" +
+                "id=" + id +
+                ", url='" + url + '\'' +
+                ", text='" + text + '\'' +
+                ", threadId=" + threadId +
+                ", inReplyToCommentId=" + inReplyToCommentId +
+                ", videoId=" + videoId +
+                ", createdAt='" + createdAt + '\'' +
+                ", updatedAt='" + updatedAt + '\'' +
+                ", deletedAt=" + deletedAt +
+                ", heldForReview=" + heldForReview +
+                ", isDeleted=" + isDeleted +
+                ", totalRepliesFromVideoAuthor=" + totalRepliesFromVideoAuthor +
+                ", totalReplies=" + totalReplies +
+                ", account=" + user +
+                '}';
     }
 
 }
