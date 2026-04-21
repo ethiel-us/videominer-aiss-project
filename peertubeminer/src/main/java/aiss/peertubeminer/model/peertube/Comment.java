@@ -8,20 +8,20 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @JsonPropertyOrder({
-    "id",
-    "url",
-    "text",
-    "threadId",
-    "inReplyToCommentId",
-    "videoId",
-    "createdAt",
-    "updatedAt",
-    "deletedAt",
-    "heldForReview",
-    "isDeleted",
-    "totalRepliesFromVideoAuthor",
-    "totalReplies",
-    "account"
+        "id",
+        "url",
+        "text",
+        "threadId",
+        "inReplyToCommentId",
+        "videoId",
+        "createdAt",
+        "updatedAt",
+        "deletedAt",
+        "heldForReview",
+        "isDeleted",
+        "totalRepliesFromVideoAuthor",
+        "totalReplies",
+        "account"
 })
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class Comment {

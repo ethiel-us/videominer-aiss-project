@@ -10,8 +10,8 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @JsonPropertyOrder({
-    "total",
-    "data"
+        "total",
+        "data"
 })
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class CaptionSearch {

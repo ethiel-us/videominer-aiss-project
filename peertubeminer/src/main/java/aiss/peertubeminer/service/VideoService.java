@@ -34,8 +34,9 @@ public class VideoService {
 
     /**
      * Map peeertube videos to videominer videos
-     * @param channel The identifier of the channel
-     * @param maxVideos The maximum number of videos to return
+     *
+     * @param channel     The identifier of the channel
+     * @param maxVideos   The maximum number of videos to return
      * @param maxComments The maximum number of comments for each video
      * @return A list of videominer videos
      */
@@ -62,7 +63,7 @@ public class VideoService {
             // Map peertube user to videominer user
             User ptUser = v.getUser();
             VMUser vmUser = VMUser.of(
-                   String.valueOf(ptUser.getId()),
+                    String.valueOf(ptUser.getId()),
                     ptUser.getDisplayName(),
                     ptUser.getUrl(),
                     ptUser.getAvatars().getFirst().getFileUrl()

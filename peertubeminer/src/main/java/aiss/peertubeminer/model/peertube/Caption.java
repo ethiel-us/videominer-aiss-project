@@ -8,15 +8,15 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @JsonPropertyOrder({
-    "language",
-    "automaticallyGenerated",
-    "captionPath",
-    "fileUrl",
-    "m3u8Url",
-    "updatedAt"
+        "language",
+        "automaticallyGenerated",
+        "captionPath",
+        "fileUrl",
+        "m3u8Url",
+        "updatedAt"
 })
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class  Caption {
+public class Caption {
 
     @JsonProperty("language")
     private Language language;

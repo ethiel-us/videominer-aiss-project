@@ -10,9 +10,9 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @JsonPropertyOrder({
-    "total",
-    "data",
-    "totalNotDeletedComments"
+        "total",
+        "data",
+        "totalNotDeletedComments"
 })
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class CommentSearch {

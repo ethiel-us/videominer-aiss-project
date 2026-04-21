@@ -10,22 +10,22 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @JsonPropertyOrder({
-    "url",
-    "name",
-    "host",
-    "avatars",
-    "id",
-    "hostRedundancyAllowed",
-    "followingCount",
-    "followersCount",
-    "createdAt",
-    "banners",
-    "displayName",
-    "description",
-    "support",
-    "isLocal",
-    "updatedAt",
-    "ownerAccount"
+        "url",
+        "name",
+        "host",
+        "avatars",
+        "id",
+        "hostRedundancyAllowed",
+        "followingCount",
+        "followersCount",
+        "createdAt",
+        "banners",
+        "displayName",
+        "description",
+        "support",
+        "isLocal",
+        "updatedAt",
+        "ownerAccount"
 })
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class Channel {

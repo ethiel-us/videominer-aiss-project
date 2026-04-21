@@ -8,12 +8,12 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @JsonPropertyOrder({
-    "height",
-    "width",
-    "path",
-    "fileUrl",
-    "createdAt",
-    "updatedAt"
+        "height",
+        "width",
+        "path",
+        "fileUrl",
+        "createdAt",
+        "updatedAt"
 })
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class Pictures {

@@ -26,12 +26,13 @@ public class ChannelService {
 
     /**
      * Map peeertube channel to videominer channel
-     * @param channelId The identifier of the channel
-     * @param maxVideos The maximum number of videos to return
+     *
+     * @param channelId   The identifier of the channel
+     * @param maxVideos   The maximum number of videos to return
      * @param maxComments The maximum number of comments for each video
      * @return A videominer channel
      */
-    public VMChannel getVMChannel(String channelId, Integer maxVideos, Integer maxComments){
+    public VMChannel getVMChannel(String channelId, Integer maxVideos, Integer maxComments) {
         String uri = baseUri + "/video-channels/" + channelId;
 
         ResponseEntity<Channel> response = restTemplate.exchange(
@@ -53,6 +54,6 @@ public class ChannelService {
         List<VMVideo> vmVideos = videoService.getVMVideos(channelId, maxVideos, maxComments);
         vmChannel.setVideos(vmVideos);
 
-    return vmChannel;
+        return vmChannel;
     }
 }

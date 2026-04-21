@@ -24,6 +24,7 @@ public class CaptionService {
 
     /**
      * Map peeertube captions to videominer captions
+     *
      * @param videoId The identifier of the video
      * @return A list of videominer model captions
      */
@@ -35,7 +36,7 @@ public class CaptionService {
         ResponseEntity<CaptionSearch> response = restTemplate.exchange(
                 uri,
                 HttpMethod.GET,
-                null,CaptionSearch.class
+                null, CaptionSearch.class
         );
 
         if (response.getBody() == null || response.getBody().getData() == null) {

@@ -10,19 +10,19 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @JsonPropertyOrder({
-    "url",
-    "name",
-    "host",
-    "avatars",
-    "id",
-    "hostRedundancyAllowed",
-    "followingCount",
-    "followersCount",
-    "createdAt",
-    "displayName",
-    "description",
-    "updatedAt",
-    "userId"
+        "url",
+        "name",
+        "host",
+        "avatars",
+        "id",
+        "hostRedundancyAllowed",
+        "followingCount",
+        "followersCount",
+        "createdAt",
+        "displayName",
+        "description",
+        "updatedAt",
+        "userId"
 })
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class User {

@@ -20,11 +20,12 @@ public class CommentService {
     String baseUri;
 
     @Autowired
-     RestTemplate restTemplate;
+    RestTemplate restTemplate;
 
     /**
      * Map peeertube comments to videominer comments
-     * @param videoId The identifier of the video
+     *
+     * @param videoId     The identifier of the video
      * @param maxComments The maximum number of comments to return
      * @return A list of videominer comments
      */
@@ -46,12 +47,12 @@ public class CommentService {
 
         ptComments = response.getBody().getData();
 
-        for ( Comment c : ptComments ) {
+        for (Comment c : ptComments) {
             VMComment vmComment = VMComment.of(
                     c.getId().toString(),
                     c.getText(),
                     c.getCreatedAt()
-                    );
+            );
             vmComments.add(vmComment);
         }
 

@@ -8,8 +8,8 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @JsonPropertyOrder({
-    "id",
-    "label"
+        "id",
+        "label"
 })
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class Language {
