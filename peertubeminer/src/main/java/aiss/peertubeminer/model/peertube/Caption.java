@@ -16,7 +16,7 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
     "updatedAt"
 })
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class Caption {
+public class  Caption {
 
     @JsonProperty("language")
     private Language language;

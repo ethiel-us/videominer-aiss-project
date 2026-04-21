@@ -12,24 +12,25 @@ public class VMVideo {
     private String name;
     private String description;
     private String releaseTime;
-    private String user;
+    private VMUser user;
     private List<VMComment> comments;
     private List<VMCaption> captions;
 
     public VMVideo() {
     }
 
-    public VMVideo(String id, String name, String description, String releaseTime) {
+    public VMVideo(String id, String name, String description, String releaseTime, VMUser user) {
         this.id = id;
         this.name = name;
         this.description = description;
         this.releaseTime = releaseTime;
+        this.user = user;
         this.comments = new ArrayList<>();
         this.captions = new ArrayList<>();
     }
 
-    public static VMVideo of(String id, String name, String description, String releaseTime) {
-        return new VMVideo(id, name, description, releaseTime);
+    public static VMVideo of(String id, String name, String description, String releaseTime, VMUser user) {
+        return new VMVideo(id, name, description, releaseTime, user);
     }
 
     public String getId() {
@@ -64,11 +65,11 @@ public class VMVideo {
         this.releaseTime = releaseTime;
     }
 
-    public String getUser() {
+    public VMUser getUser() {
         return user;
     }
 
-    public void setUser(String user) {
+    public void setUser(VMUser user) {
         this.user = user;
     }
 
