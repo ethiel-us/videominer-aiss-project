@@ -1,11 +1,10 @@
 package aiss.peertubeminer.service;
 
-import aiss.peertubeminer.model.peertube.User;
+import aiss.peertubeminer.etl.Transformer;
 import aiss.peertubeminer.model.peertube.Video;
 import aiss.peertubeminer.model.peertube.VideoSearch;
 import aiss.peertubeminer.model.videominer.VMCaption;
 import aiss.peertubeminer.model.videominer.VMComment;
-import aiss.peertubeminer.model.videominer.VMUser;
 import aiss.peertubeminer.model.videominer.VMVideo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -29,11 +28,14 @@ public class VideoService {
     @Autowired
     CaptionService captionService;
 
+    @Autowired
+    Transformer transformer;
+
     @Value("${peertubeminer.baseuri}")
     String baseUri;
 
     /**
-     * Map peeertube videos to videominer videos
+     * Map peertube videos to videominer videos
      *
      * @param channel     The identifier of the channel
      * @param maxVideos   The maximum number of videos to return
@@ -41,7 +43,8 @@ public class VideoService {
      * @return A list of videominer videos
      */
     public List<VMVideo> getVMVideos(String channel, Integer maxVideos, Integer maxComments) {
-        String uri = baseUri + "/video-channels/" + channel + "/videos?count=" + String.valueOf(maxVideos);
+        String uri = baseUri + "/video-channels/" + channel + "/videos?count=" + maxVideos;
+
         List<VMVideo> vmVideos = new ArrayList<>();
         List<Video> ptVideos;
 
@@ -55,36 +58,18 @@ public class VideoService {
         if (response.getBody() == null || response.getBody().getData() == null) {
             return new ArrayList<>();
         }
+
         ptVideos = response.getBody().getData();
-
         for (Video v : ptVideos) {
-            String videoId = v.getId().toString();
-
-            // Map peertube user to videominer user
-            User ptUser = v.getUser();
-            VMUser vmUser = VMUser.of(
-                    String.valueOf(ptUser.getId()),
-                    ptUser.getDisplayName(),
-                    ptUser.getUrl(),
-                    ptUser.getAvatars().getFirst().getFileUrl()
-
-            );
+            String videoId = String.valueOf(v.getId());
 
             // Get comments and captions
             List<VMComment> vmComments = commentService.getVMComments(videoId, maxComments);
             List<VMCaption> vmCaptions = captionService.getVMCaptions(videoId);
 
             // Map peertube video to videominer video
-            VMVideo vmVideo = VMVideo.of(
-                    String.valueOf(v.getId()),
-                    v.getName(),
-                    v.getDescription(),
-                    v.getCreatedAt(),
-                    vmUser
-            );
+            VMVideo vmVideo = transformer.transformVideo(v, vmComments, vmCaptions);
 
-            vmVideo.setComments(vmComments);
-            vmVideo.setCaptions(vmCaptions);
             vmVideos.add(vmVideo);
         }
 

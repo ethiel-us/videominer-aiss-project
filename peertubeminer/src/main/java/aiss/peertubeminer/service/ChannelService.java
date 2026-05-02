@@ -1,5 +1,6 @@
 package aiss.peertubeminer.service;
 
+import aiss.peertubeminer.etl.Transformer;
 import aiss.peertubeminer.model.peertube.Channel;
 import aiss.peertubeminer.model.videominer.VMChannel;
 import aiss.peertubeminer.model.videominer.VMVideo;
@@ -21,11 +22,14 @@ public class ChannelService {
     @Autowired
     VideoService videoService;
 
+    @Autowired
+    Transformer transformer;
+
     @Value("${peertubeminer.baseuri}")
     String baseUri;
 
     /**
-     * Map peeertube channel to videominer channel
+     * Map peertube channel to a videominer channel
      *
      * @param channelId   The identifier of the channel
      * @param maxVideos   The maximum number of videos to return
@@ -43,17 +47,11 @@ public class ChannelService {
         );
 
         if (response.getBody() == null) return null;
-        Channel channel = response.getBody();
-        VMChannel vmChannel = VMChannel.of(
-                String.valueOf(channel.getId()),
-                channel.getDisplayName(),
-                channel.getDescription(),
-                channel.getCreatedAt()
-        );
 
         List<VMVideo> vmVideos = videoService.getVMVideos(channelId, maxVideos, maxComments);
-        vmChannel.setVideos(vmVideos);
 
-        return vmChannel;
+        Channel channel = response.getBody();
+
+        return transformer.transformChannel(channel, vmVideos);
     }
 }

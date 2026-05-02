@@ -3,6 +3,7 @@ package aiss.peertubeminer.service;
 import aiss.peertubeminer.model.peertube.Comment;
 import aiss.peertubeminer.model.peertube.CommentSearch;
 import aiss.peertubeminer.model.videominer.VMComment;
+import aiss.peertubeminer.etl.Transformer;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpMethod;
@@ -22,16 +23,18 @@ public class CommentService {
     @Autowired
     RestTemplate restTemplate;
 
+    @Autowired
+    Transformer transformer;
+
     /**
-     * Map peeertube comments to videominer comments
+     * Map peertube comments to videominer comments
      *
      * @param videoId     The identifier of the video
      * @param maxComments The maximum number of comments to return
      * @return A list of videominer comments
      */
     public List<VMComment> getVMComments(String videoId, Integer maxComments) {
-        String uri = baseUri + "/videos/" + videoId + "/comment-threads?count=" + String.valueOf(maxComments);
-        List<VMComment> vmComments = new ArrayList<>();
+        String uri = baseUri + "/videos/" + videoId + "/comment-threads?count=" + maxComments;
         List<Comment> ptComments;
 
         ResponseEntity<CommentSearch> response = restTemplate.exchange(
@@ -47,15 +50,9 @@ public class CommentService {
 
         ptComments = response.getBody().getData();
 
-        for (Comment c : ptComments) {
-            VMComment vmComment = VMComment.of(
-                    c.getId().toString(),
-                    c.getText(),
-                    c.getCreatedAt()
-            );
-            vmComments.add(vmComment);
-        }
-
-        return vmComments;
+        // For each peertube comment, map it to a videominer comment
+        return ptComments.stream()
+                .map(transformer::transformComment)
+                .toList();
     }
 }

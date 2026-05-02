@@ -1,5 +1,6 @@
 package aiss.peertubeminer.service;
 
+import aiss.peertubeminer.etl.Transformer;
 import aiss.peertubeminer.model.peertube.Caption;
 import aiss.peertubeminer.model.peertube.CaptionSearch;
 import aiss.peertubeminer.model.videominer.VMCaption;
@@ -22,15 +23,17 @@ public class CaptionService {
     @Autowired
     RestTemplate restTemplate;
 
+    @Autowired
+    Transformer transformer;
+
     /**
-     * Map peeertube captions to videominer captions
+     * Map peertube captions to videominer captions
      *
      * @param videoId The identifier of the video
      * @return A list of videominer model captions
      */
     public List<VMCaption> getVMCaptions(String videoId) {
         String uri = baseUri + "/videos/" + videoId + "/captions";
-        List<VMCaption> vmCaptions = new ArrayList<>();
         List<Caption> captions;
 
         ResponseEntity<CaptionSearch> response = restTemplate.exchange(
@@ -42,17 +45,10 @@ public class CaptionService {
         if (response.getBody() == null || response.getBody().getData() == null) {
             return new ArrayList<>();
         }
+
         captions = response.getBody().getData();
-
-        for (Caption c : captions) {
-            VMCaption vmCaption = VMCaption.of(
-                    c.getLanguage().getId(),
-                    c.getFileUrl(),
-                    c.getLanguage().getLabel()
-            );
-            vmCaptions.add(vmCaption);
-        }
-
-        return vmCaptions;
+        return captions.stream()
+                .map(transformer::transformCaption)
+                .toList();
     }
 }

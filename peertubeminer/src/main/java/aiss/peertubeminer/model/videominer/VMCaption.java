@@ -1,5 +1,6 @@
 package aiss.peertubeminer.model.videominer;
 
+import aiss.peertubeminer.model.peertube.Caption;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
@@ -54,4 +55,5 @@ public class VMCaption {
                 ", language='" + language + '\'' +
                 '}';
     }
+
 }
