@@ -6,6 +6,7 @@ import aiss.peertubeminer.model.videominer.VMChannel;
 import aiss.peertubeminer.model.videominer.VMVideo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
@@ -53,5 +54,24 @@ public class ChannelService {
         Channel channel = response.getBody();
 
         return transformer.transformChannel(channel, vmVideos);
+    }
+
+    /**
+     * create a channel in videominer
+     * @param channel videominer channel to be created in videominer
+     * @return videominer channel
+     */
+    public VMChannel sendToVideominer(VMChannel channel) {
+        String uri = "http://localhost:8080/videominer/channels";
+
+        HttpEntity<VMChannel> request = new HttpEntity<>(channel);
+
+        ResponseEntity<VMChannel> response = restTemplate.exchange(
+                uri,
+                HttpMethod.POST,
+                request,
+                VMChannel.class);
+
+        return response.getBody();
     }
 }

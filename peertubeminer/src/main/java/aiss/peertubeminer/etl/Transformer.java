@@ -6,6 +6,16 @@ import org.springframework.stereotype.Component;
 
 import java.util.List;
 
+/**
+ * Transformer class responsible for mapping Peertube objects into VideoMiner objects.
+ *
+ * It converts:
+ * - Peertube User objects into VideoMiner User objects
+ * - Peertube Video objects into VideoMiner Video objects
+ * - Peertube Channel objects into VideoMiner Channel objects
+ * - Peertube Comment objects into VideoMiner Comment objects
+ * - Peertube Caption objects into VideoMiner Caption objects
+ */
 @Component
 public class Transformer {
 
