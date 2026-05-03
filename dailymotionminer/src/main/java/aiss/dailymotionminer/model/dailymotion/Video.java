@@ -15,8 +15,8 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 @JsonPropertyOrder({
     "id",
     "title",
-    "channel",
-    "owner"
+    "description",
+    "release_time"
 })
 @Generated("jsonschema2pojo")
 public class Video {
@@ -25,12 +25,10 @@ public class Video {
     private String id;
     @JsonProperty("title")
     private String title;
-    @JsonProperty("channel")
-    private String channel;
-    @JsonProperty("owner")
-    private String owner;
-    @JsonIgnore
-    private Map<String, Object> additionalProperties = new LinkedHashMap<String, Object>();
+    @JsonProperty("description")
+    private String description;
+    @JsonProperty("release_time")
+    private Long release_time;
 
     @JsonProperty("id")
     public String getId() {
@@ -52,66 +50,29 @@ public class Video {
         this.title = title;
     }
 
-    @JsonProperty("channel")
-    public String getChannel() {
-        return channel;
+    public String getDescription() {
+        return description;
     }
 
-    @JsonProperty("channel")
-    public void setChannel(String channel) {
-        this.channel = channel;
+    public void setDescription(String description) {
+        this.description = description;
     }
 
-    @JsonProperty("owner")
-    public String getOwner() {
-        return owner;
+    public Long getRelease_time() {
+        return release_time;
     }
 
-    @JsonProperty("owner")
-    public void setOwner(String owner) {
-        this.owner = owner;
-    }
-
-    @JsonAnyGetter
-    public Map<String, Object> getAdditionalProperties() {
-        return this.additionalProperties;
-    }
-
-    @JsonAnySetter
-    public void setAdditionalProperty(String name, Object value) {
-        this.additionalProperties.put(name, value);
+    public void setRelease_time(Long release_time) {
+        this.release_time = release_time;
     }
 
     @Override
     public String toString() {
-        StringBuilder sb = new StringBuilder();
-        sb.append(Video.class.getName()).append('@').append(Integer.toHexString(System.identityHashCode(this))).append('[');
-        sb.append("id");
-        sb.append('=');
-        sb.append(((this.id == null)?"<null>":this.id));
-        sb.append(',');
-        sb.append("title");
-        sb.append('=');
-        sb.append(((this.title == null)?"<null>":this.title));
-        sb.append(',');
-        sb.append("channel");
-        sb.append('=');
-        sb.append(((this.channel == null)?"<null>":this.channel));
-        sb.append(',');
-        sb.append("owner");
-        sb.append('=');
-        sb.append(((this.owner == null)?"<null>":this.owner));
-        sb.append(',');
-        sb.append("additionalProperties");
-        sb.append('=');
-        sb.append(((this.additionalProperties == null)?"<null>":this.additionalProperties));
-        sb.append(',');
-        if (sb.charAt((sb.length()- 1)) == ',') {
-            sb.setCharAt((sb.length()- 1), ']');
-        } else {
-            sb.append(']');
-        }
-        return sb.toString();
+        return "Video{" +
+                "id='" + id + '\'' +
+                ", title='" + title + '\'' +
+                ", description='" + description + '\'' +
+                ", release_time=" + release_time +
+                '}';
     }
-
 }

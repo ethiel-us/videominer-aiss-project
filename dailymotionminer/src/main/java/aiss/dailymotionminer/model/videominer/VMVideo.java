@@ -1,7 +1,7 @@
 package aiss.dailymotionminer.model.videominer;
 
-import aiss.peertubeminer.model.videominer.VMCaption;
-import aiss.peertubeminer.model.videominer.VMUser;
+import aiss.dailymotionminer.model.videominer.VMCaption;
+import aiss.dailymotionminer.model.videominer.VMUser;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import java.util.ArrayList;

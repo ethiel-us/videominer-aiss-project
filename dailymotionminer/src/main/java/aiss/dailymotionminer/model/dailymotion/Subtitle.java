@@ -20,6 +20,8 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 @Generated("jsonschema2pojo")
 public class Subtitle {
 
+    @JsonProperty("id")
+    private String id;
     @JsonProperty("format")
     private String format;
     @JsonProperty("language")
@@ -27,6 +29,12 @@ public class Subtitle {
     @JsonProperty("url")
     private String url;
 
+    public String getId() {
+        return id;
+    }
+    public void setId(String id) {
+        this.id = id;
+    }
     @JsonProperty("format")
     public String getFormat() {
         return format;
@@ -59,26 +67,11 @@ public class Subtitle {
 
     @Override
     public String toString() {
-        StringBuilder sb = new StringBuilder();
-        sb.append(Subtitle.class.getName()).append('@').append(Integer.toHexString(System.identityHashCode(this))).append('[');
-        sb.append("format");
-        sb.append('=');
-        sb.append(((this.format == null)?"<null>":this.format));
-        sb.append(',');
-        sb.append("language");
-        sb.append('=');
-        sb.append(((this.language == null)?"<null>":this.language));
-        sb.append(',');
-        sb.append("url");
-        sb.append('=');
-        sb.append(((this.url == null)?"<null>":this.url));
-        sb.append(',');
-        if (sb.charAt((sb.length()- 1)) == ',') {
-            sb.setCharAt((sb.length()- 1), ']');
-        } else {
-            sb.append(']');
-        }
-        return sb.toString();
+        return "Subtitle{" +
+                "id='" + id + '\'' +
+                ", format='" + format + '\'' +
+                ", language='" + language + '\'' +
+                ", url='" + url + '\'' +
+                '}';
     }
-
 }
