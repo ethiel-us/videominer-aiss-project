@@ -29,6 +29,9 @@ public class ChannelService {
     @Value("${peertubeminer.baseuri}")
     String baseUri;
 
+    @Value("${videominer.baseuri}")
+    String videominerBaseUri;
+
     /**
      * Map peertube channel to a videominer channel
      *
@@ -62,7 +65,7 @@ public class ChannelService {
      * @return videominer channel
      */
     public VMChannel sendToVideominer(VMChannel channel) {
-        String uri = "http://localhost:8080/videominer/channels";
+        String uri = videominerBaseUri + "/channels";
 
         HttpEntity<VMChannel> request = new HttpEntity<>(channel);
 
