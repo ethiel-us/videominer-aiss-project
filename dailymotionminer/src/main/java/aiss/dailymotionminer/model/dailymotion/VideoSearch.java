@@ -89,7 +89,7 @@ public class VideoSearch {
     }
 
     @JsonProperty("list")
-    public ArrayList<Video> etList() {
+    public ArrayList<Video> getList() {
         return list;
     }
 

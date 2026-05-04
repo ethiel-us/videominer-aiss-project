@@ -1,6 +1,9 @@
 
 package aiss.dailymotionminer.model.dailymotion;
 
+import java.time.Instant;
+import java.time.LocalDateTime;
+import java.time.ZoneId;
 import java.util.LinkedHashMap;
 import java.util.Map;
 import javax.annotation.processing.Generated;

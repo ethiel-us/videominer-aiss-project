@@ -24,10 +24,13 @@ public class Transformer {
         );
     }
 
-    public VMComment transformComment(Tags t) {
+    public VMComment transformComment(Tag t) {
         if (t == null) return null;
 
-        return null;
+        return VMComment.of(
+                null,
+                t.getText(),
+                null);
     }
 
     public VMCaption transformCaption(Subtitle s) {
@@ -40,7 +43,7 @@ public class Transformer {
         );
     }
 
-    public VMVideo transformVideo(Video v, List<VMComment> comments, List<VMCaption> captions, VMUser user) {
+    public VMVideo transformVideo(Video v, List<VMComment> comments, List<VMCaption> captions) {
         if (v == null) return null;
 
         VMVideo vmVideo = VMVideo.of(
@@ -48,7 +51,7 @@ public class Transformer {
                 v.getTitle(),
                 v.getDescription(),
                 v.getRelease_time().toString(),
-                user
+                null
         );
 
         vmVideo.setComments(comments);
@@ -64,7 +67,7 @@ public class Transformer {
                 String.valueOf(u.getId()),
                 u.getScreenname(),
                 u.getDescription(),
-                u.TiempoCreado(u.getCreated_Time()).toString()
+                u.getCreated_Time().toString()
         );
 
         vmChannel.setVideos(videos);
