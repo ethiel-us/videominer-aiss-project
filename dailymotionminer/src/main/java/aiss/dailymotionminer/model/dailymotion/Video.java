@@ -5,6 +5,7 @@ import java.time.Instant;
 import java.time.LocalDateTime;
 import java.time.ZoneId;
 import java.util.LinkedHashMap;
+import java.util.List;
 import java.util.Map;
 import javax.annotation.processing.Generated;
 import com.fasterxml.jackson.annotation.JsonAnyGetter;
@@ -19,7 +20,8 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
     "id",
     "title",
     "description",
-    "created_time"
+    "created_time",
+        "tags"
 })
 @Generated("jsonschema2pojo")
 public class Video {
@@ -32,6 +34,8 @@ public class Video {
     private String description;
     @JsonProperty("created_time")
     private Long created_time;
+    @JsonProperty("tags")
+    private List<String> tags;
 
     @JsonProperty("id")
     public String getId() {
@@ -73,6 +77,14 @@ public class Video {
         this.created_time = created_time;
     }
 
+    public List<String> getTags() {
+        return tags;
+    }
+
+    public void setTags(List<String> tags) {
+        this.tags = tags;
+    }
+
     @Override
     public String toString() {
         return "Video{" +
@@ -80,6 +92,7 @@ public class Video {
                 ", title='" + title + '\'' +
                 ", description='" + description + '\'' +
                 ", created_time=" + created_time +
+                ", tags=" + tags +
                 '}';
     }
 }

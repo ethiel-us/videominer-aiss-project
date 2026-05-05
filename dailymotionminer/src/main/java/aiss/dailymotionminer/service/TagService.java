@@ -1,8 +1,7 @@
 package aiss.dailymotionminer.service;
 
 import aiss.dailymotionminer.etl.Transformer;
-import aiss.dailymotionminer.model.dailymotion.Tag;
-import aiss.dailymotionminer.model.dailymotion.TagSearch;
+import aiss.dailymotionminer.model.dailymotion.Video;
 import aiss.dailymotionminer.model.videominer.VMComment;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -35,13 +34,13 @@ public class TagService {
      */
     public List<VMComment> getVMComments(String videoId, Integer maxTags) {
         String uri = baseUri + "/video/" + videoId + "?fields=tags";
-        List<Tag> ptComments;
+        List<String> ptComments;
 
-        ResponseEntity<TagSearch> response = restTemplate.exchange(
+        ResponseEntity<Video> response = restTemplate.exchange(
                 uri,
                 HttpMethod.GET,
                 null,
-                TagSearch.class
+                Video.class
         );
 
         if (response.getBody() == null || response.getBody().getTags() == null) {

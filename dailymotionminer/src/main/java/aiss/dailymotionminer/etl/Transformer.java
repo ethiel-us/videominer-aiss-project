@@ -24,12 +24,12 @@ public class Transformer {
         );
     }
 
-    public VMComment transformComment(Tag t) {
+    public VMComment transformComment(String t) {
         if (t == null) return null;
 
         return VMComment.of(
-                null,
-                t.getText(),
+                "",
+                t,
                 null);
     }
 
