@@ -1,19 +1,32 @@
 package aiss.dailymotionminer.etl;
 
+import aiss.dailymotionminer.model.dailymotion.Subtitle;
+import aiss.dailymotionminer.model.dailymotion.User;
+import aiss.dailymotionminer.model.dailymotion.Video;
 import aiss.dailymotionminer.model.videominer.*;
-import aiss.dailymotionminer.model.dailymotion.*;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
 
+/**
+ * Transformer class responsible for mapping Dailymotion resources into VideoMiner resources.
+ * <p>
+ * It converts:
+ * - Dailymotion User objects into VideoMiner User and Channel objects
+ * - Dailymotion Video objects into VideoMiner Video objects
+ * - Dailymotion Tag objects into VideoMiner Comment objects
+ * - Dailymotion Subtitle objects into VideoMiner Caption objects
+ *
+ */
 @Component
 public class Transformer {
+
     public VMUser transformUser(User user) {
-        if ( user == null ) return null;
+        if (user == null) return null;
 
         String avatarUri = null;
         if (user.getAvatar_720_url() != null && !user.getAvatar_720_url().isEmpty()) {
-            avatarUri =  user.getAvatar_720_url();
+            avatarUri = user.getAvatar_720_url();
         }
 
         return VMUser.of(
@@ -24,33 +37,33 @@ public class Transformer {
         );
     }
 
-    public VMComment transformComment(String t) {
-        if (t == null) return null;
+    public VMComment transformComment(String tag) {
+        if (tag == null) return null;
 
         return VMComment.of(
                 "",
-                t,
-                null);
+                tag,
+                "");
     }
 
-    public VMCaption transformCaption(Subtitle s) {
-        if (s == null) return null;
+    public VMCaption transformCaption(Subtitle subtitle) {
+        if (subtitle == null) return null;
 
         return VMCaption.of(
-                s.getId(),
-                s.getUrl(),
-                s.getLanguage()
+                subtitle.getId(),
+                subtitle.getUrl(),
+                subtitle.getLanguage()
         );
     }
 
-    public VMVideo transformVideo(Video v, List<VMComment> comments, List<VMCaption> captions) {
-        if (v == null) return null;
+    public VMVideo transformVideo(Video video, List<VMComment> comments, List<VMCaption> captions) {
+        if (video == null) return null;
 
         VMVideo vmVideo = VMVideo.of(
-                String.valueOf(v.getId()),
-                v.getTitle(),
-                v.getDescription(),
-                v.getCreated_time().toString(),
+                String.valueOf(video.getId()),
+                video.getTitle(),
+                video.getDescription(),
+                video.getCreated_time().toString(),
                 null
         );
 
@@ -60,14 +73,14 @@ public class Transformer {
         return vmVideo;
     }
 
-    public VMChannel transformChannel(User u, List<VMVideo> videos) {
-        if (u == null) return null;
+    public VMChannel transformChannel(User user, List<VMVideo> videos) {
+        if (user == null) return null;
 
         VMChannel vmChannel = VMChannel.of(
-                String.valueOf(u.getId()),
-                u.getScreenname(),
-                u.getDescription(),
-                u.getCreated_Time().toString()
+                String.valueOf(user.getId()),
+                user.getScreenname(),
+                user.getDescription(),
+                String.valueOf(user.getCreated_Time())
         );
 
         vmChannel.setVideos(videos);

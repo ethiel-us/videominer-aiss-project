@@ -49,6 +49,7 @@ public class SubtitleService {
         }
 
         captions = response.getBody().getList();
+
         return captions.stream()
                 .map(transformer::transformCaption)
                 .toList();

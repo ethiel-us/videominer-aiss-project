@@ -13,6 +13,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
 import java.util.List;
+
 @Service
 public class ChannelService {
 
@@ -27,6 +28,9 @@ public class ChannelService {
 
     @Value("${dailymotion.baseuri}")
     String baseUri;
+
+    @Value("${videominer.baseuri}")
+    String videominerBaseUri;
 
     /**
      * Map dailymotion channel to a videominer channel
@@ -51,17 +55,18 @@ public class ChannelService {
         List<VMVideo> vmVideos = videoService.getVMVideos(channelId, maxVideos, maxComments);
 
         User channel = response.getBody();
-        vmVideos.stream().forEach(v -> v.setUser(transformer.transformUser(channel)));
+        vmVideos.forEach(v -> v.setUser(transformer.transformUser(channel)));
         return transformer.transformChannel(channel, vmVideos);
     }
 
     /**
-     * create a channel in videominer
-     * @param channel videominer channel to be created in videominer
-     * @return videominer channel
+     * Create a channel in videominer
+     *
+     * @param channel Dailymotion channel to be created in videominer
+     * @return A videominer channel
      */
     public VMChannel sendToVideominer(VMChannel channel) {
-        String uri = "http://localhost:8080/videominer/channels";
+        String uri = videominerBaseUri + "/channels";
 
         HttpEntity<VMChannel> request = new HttpEntity<>(channel);
 

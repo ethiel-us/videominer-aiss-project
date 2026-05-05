@@ -1,29 +1,26 @@
 
 package aiss.dailymotionminer.model.dailymotion;
 
-import java.time.Instant;
-import java.time.LocalDateTime;
-import java.time.ZoneId;
-import java.util.LinkedHashMap;
-import java.util.List;
-import java.util.Map;
-import javax.annotation.processing.Generated;
-import com.fasterxml.jackson.annotation.JsonAnyGetter;
-import com.fasterxml.jackson.annotation.JsonAnySetter;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
+import javax.annotation.processing.Generated;
+import java.util.List;
+
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @JsonPropertyOrder({
-    "id",
-    "title",
-    "description",
-    "created_time",
+        "id",
+        "title",
+        "description",
+        "created_time",
         "tags"
 })
 @Generated("jsonschema2pojo")
+
+/**
+ * This model is also used to extract video tags
+ */
 public class Video {
 
     @JsonProperty("id")
@@ -77,10 +74,12 @@ public class Video {
         this.created_time = created_time;
     }
 
+    @JsonProperty("tags")
     public List<String> getTags() {
         return tags;
     }
 
+    @JsonProperty("tags")
     public void setTags(List<String> tags) {
         this.tags = tags;
     }

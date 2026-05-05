@@ -66,9 +66,9 @@ public class VideoService {
             // Get comments and captions
             List<VMComment> vmComments = tagService.getVMComments(videoId, maxComments);
             vmComments.forEach(c -> c.setCreatedOn(v.getCreated_time().toString()));
+
             List<VMCaption> vmCaptions = subtitleService.getVMCaptions(videoId);
 
-            // Map dailymotion video to videominer video
             VMVideo vmVideo = transformer.transformVideo(v, vmComments, vmCaptions);
 
             vmVideos.add(vmVideo);
@@ -77,6 +77,11 @@ public class VideoService {
         return vmVideos;
     }
 
+    /**
+     * Get videos from dailymotion
+     * @param channel Channel to get videos from
+     * @return List of videos
+     */
     public List<Video> getDMVideos(String channel) {
         String uri = baseUri + channel + "/videos";
 

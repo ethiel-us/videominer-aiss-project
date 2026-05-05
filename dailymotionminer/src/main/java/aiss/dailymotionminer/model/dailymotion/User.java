@@ -17,6 +17,13 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
         "avatar_720_url"
 })
 @Generated("jsonschema2pojo")
+
+/**
+ * This model is used to map:
+ * User model from VideoMiner
+ * Channel model from VideoMiner
+ *
+ */
 public class User {
 
     @JsonProperty("id")

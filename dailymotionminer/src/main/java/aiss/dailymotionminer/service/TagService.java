@@ -26,9 +26,9 @@ public class TagService {
     Transformer transformer;
 
     /**
-     * Map dailymotion comments to videominer comments
+     * Map dailymotion tags to videominer comments
      *
-     * @param videoId     The identifier of the video
+     * @param videoId The identifier of the video
      * @param maxTags The maximum number of comments to return
      * @return A list of videominer comments
      */

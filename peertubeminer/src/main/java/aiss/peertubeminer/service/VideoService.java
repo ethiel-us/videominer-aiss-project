@@ -76,6 +76,11 @@ public class VideoService {
         return vmVideos;
     }
 
+    /**
+     * Get videos from peerTube (for test purposes)
+     * @param channel Channel to get videos from
+     * @return List of videos
+     */
     public List<Video> getPTVideos(String channel) {
         String uri = baseUri + "/video-channels/" + channel + "/videos";
 

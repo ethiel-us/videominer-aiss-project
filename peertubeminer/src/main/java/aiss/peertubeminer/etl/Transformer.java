@@ -15,6 +15,7 @@ import java.util.List;
  * - Peertube Channel objects into VideoMiner Channel objects
  * - Peertube Comment objects into VideoMiner Comment objects
  * - Peertube Caption objects into VideoMiner Caption objects
+ *
  */
 @Component
 public class Transformer {
