@@ -19,7 +19,7 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
     "id",
     "title",
     "description",
-    "release_time"
+    "created_time"
 })
 @Generated("jsonschema2pojo")
 public class Video {
@@ -30,8 +30,8 @@ public class Video {
     private String title;
     @JsonProperty("description")
     private String description;
-    @JsonProperty("release_time")
-    private Long release_time;
+    @JsonProperty("created_time")
+    private Long created_time;
 
     @JsonProperty("id")
     public String getId() {
@@ -53,20 +53,24 @@ public class Video {
         this.title = title;
     }
 
+    @JsonProperty("description")
     public String getDescription() {
         return description;
     }
 
+    @JsonProperty("description")
     public void setDescription(String description) {
         this.description = description;
     }
 
-    public Long getRelease_time() {
-        return release_time;
+    @JsonProperty("created_time")
+    public Long getCreated_time() {
+        return created_time;
     }
 
-    public void setRelease_time(Long release_time) {
-        this.release_time = release_time;
+    @JsonProperty("created_time")
+    public void setCreated_time(Long created_time) {
+        this.created_time = created_time;
     }
 
     @Override
@@ -75,7 +79,7 @@ public class Video {
                 "id='" + id + '\'' +
                 ", title='" + title + '\'' +
                 ", description='" + description + '\'' +
-                ", release_time=" + release_time +
+                ", created_time=" + created_time +
                 '}';
     }
 }

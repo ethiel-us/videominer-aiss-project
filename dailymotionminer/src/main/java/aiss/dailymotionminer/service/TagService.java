@@ -17,7 +17,7 @@ import java.util.List;
 @Service
 public class TagService {
 
-    @Value("${https://api.dailymotion.com}")
+    @Value("${dailymotion.baseuri}")
     String baseUri;
 
     @Autowired
@@ -34,7 +34,7 @@ public class TagService {
      * @return A list of videominer comments
      */
     public List<VMComment> getVMComments(String videoId, Integer maxTags) {
-        String uri = baseUri + "/video/" + videoId + "?fields=tags&limit=" + maxTags;
+        String uri = baseUri + "/video/" + videoId + "?fields=tags";
         List<Tag> ptComments;
 
         ResponseEntity<TagSearch> response = restTemplate.exchange(
@@ -53,6 +53,7 @@ public class TagService {
         // For each dailymotion comment, map it to a videominer comment
         return ptComments.stream()
                 .map(transformer::transformComment)
+                .limit(maxTags)
                 .toList();
     }
 }

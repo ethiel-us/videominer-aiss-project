@@ -1,5 +1,6 @@
 package aiss.peertubeminer.controller;
 
+import aiss.peertubeminer.exception.ChannelNotFoundException;
 import aiss.peertubeminer.model.videominer.VMChannel;
 import aiss.peertubeminer.service.ChannelService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,10 +15,12 @@ public class ChannelController {
     ChannelService channelService;
 
     @GetMapping("/{id}")
+    @ResponseStatus(HttpStatus.OK)
     public VMChannel getChannel(
             @PathVariable String id,
             @RequestParam(defaultValue = "10") Integer maxVideos,
             @RequestParam(defaultValue = "10") Integer maxComments) {
+
         return channelService.getVMChannel(id, maxVideos, maxComments);
     }
 

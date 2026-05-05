@@ -25,7 +25,7 @@ public class ChannelService {
     @Autowired
     Transformer transformer;
 
-    @Value("${https://api.dailymotion.com}")
+    @Value("${dailymotion.baseuri}")
     String baseUri;
 
     /**
@@ -37,7 +37,7 @@ public class ChannelService {
      * @return A videominer channel
      */
     public VMChannel getVMChannel(String channelId, Integer maxVideos, Integer maxComments) {
-        String uri = baseUri + "/" + channelId + "/videos";
+        String uri = baseUri + "/user/" + channelId + "?fields=id,screenname,description,created_time,url,avatar_720_url";
 
         ResponseEntity<User> response = restTemplate.exchange(
                 uri,

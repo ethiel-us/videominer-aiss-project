@@ -31,7 +31,7 @@ public class VideoService {
     @Autowired
     Transformer transformer;
 
-    @Value("${https://api.dailymotion.com}")
+    @Value("${dailymotion.baseuri}")
     String baseUri;
 
     /**
@@ -43,7 +43,7 @@ public class VideoService {
      * @return A list of videominer videos
      */
     public List<VMVideo> getVMVideos(String channel, Integer maxVideos, Integer maxComments) {
-        String uri = baseUri + "/" + channel + "/videos?limit=" + maxVideos;
+        String uri = baseUri + "/user/" + channel + "/videos?limit=" + maxVideos + "&fields=id,title,description,created_time";
 
         List<VMVideo> vmVideos = new ArrayList<>();
         List<Video> ptVideos;
@@ -65,7 +65,7 @@ public class VideoService {
 
             // Get comments and captions
             List<VMComment> vmComments = tagService.getVMComments(videoId, maxComments);
-            vmComments.forEach(c -> c.setCreatedOn(v.getRelease_time().toString()));
+            vmComments.forEach(c -> c.setCreatedOn(v.getCreated_time().toString()));
             List<VMCaption> vmCaptions = subtitleService.getVMCaptions(videoId);
 
             // Map dailymotion video to videominer video

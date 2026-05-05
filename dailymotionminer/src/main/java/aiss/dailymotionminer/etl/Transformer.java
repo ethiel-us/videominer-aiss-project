@@ -12,8 +12,8 @@ public class Transformer {
         if ( user == null ) return null;
 
         String avatarUri = null;
-        if (user.getAvatar_url() != null && !user.getAvatar_url().isEmpty()) {
-            avatarUri =  user.getAvatar_url();
+        if (user.getAvatar_720_url() != null && !user.getAvatar_720_url().isEmpty()) {
+            avatarUri =  user.getAvatar_720_url();
         }
 
         return VMUser.of(
@@ -50,7 +50,7 @@ public class Transformer {
                 String.valueOf(v.getId()),
                 v.getTitle(),
                 v.getDescription(),
-                v.getRelease_time().toString(),
+                v.getCreated_time().toString(),
                 null
         );
 
