@@ -17,7 +17,11 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @JsonPropertyOrder({
     "id",
-    "screenname"
+    "screenname",
+        "description",
+        "created_time",
+        "url",
+        "avatar_url"
 })
 @Generated("jsonschema2pojo")
 public class User {
@@ -89,13 +93,6 @@ public class User {
         this.avatar_url = avatar_url;
     }
 
-    public LocalDateTime TiempoCreado(Long tiempo) {
-        LocalDateTime fecha = LocalDateTime.ofInstant(
-                Instant.ofEpochSecond(tiempo),
-                ZoneId.systemDefault()
-        );;
-        return fecha;
-    }
     @Override
     public String toString() {
         return "User{" +
