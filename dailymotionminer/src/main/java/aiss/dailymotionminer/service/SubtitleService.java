@@ -17,7 +17,7 @@ import java.util.List;
 @Service
 public class SubtitleService {
 
-    @Value("${https://api.dailymotion.com}")
+    @Value("${dailymotion.baseuri}")
     String baseUri;
 
     @Autowired

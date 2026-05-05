@@ -1,15 +1,8 @@
 
 package aiss.dailymotionminer.model.dailymotion;
 
-import java.time.Instant;
-import java.time.LocalDateTime;
-import java.time.ZoneId;
-import java.util.LinkedHashMap;
-import java.util.Map;
 import javax.annotation.processing.Generated;
-import com.fasterxml.jackson.annotation.JsonAnyGetter;
-import com.fasterxml.jackson.annotation.JsonAnySetter;
-import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
@@ -21,7 +14,7 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
         "description",
         "created_time",
         "url",
-        "avatar_url"
+        "avatar_720_url"
 })
 @Generated("jsonschema2pojo")
 public class User {
@@ -36,8 +29,8 @@ public class User {
     private Long created_Time;
     @JsonProperty("url")
     private String url;
-    @JsonProperty("avatar_url")
-    private String avatar_url;
+    @JsonProperty("avatar_720_url")
+    private String avatar_720_url;
 
     @JsonProperty("id")
     public String getId() {
@@ -69,28 +62,34 @@ public class User {
         this.description = description;
     }
 
+    @JsonProperty("created_time")
     public Long getCreated_Time() {
         return created_Time;
     }
 
+    @JsonProperty("created_time")
     public void setCreated_Time(Long created_Time) {
         this.created_Time = created_Time;
     }
 
+    @JsonProperty("url")
     public String getUrl() {
         return url;
     }
 
+    @JsonProperty("url")
     public void setUrl(String url) {
         this.url = url;
     }
 
-    public String getAvatar_url() {
-        return avatar_url;
+    @JsonProperty("avatar_720_url")
+    public String getAvatar_720_url() {
+        return avatar_720_url;
     }
 
-    public void setAvatar_url(String avatar_url) {
-        this.avatar_url = avatar_url;
+    @JsonProperty("avatar_720_url")
+    public void setAvatar_720_url(String avatar_720_url) {
+        this.avatar_720_url = avatar_720_url;
     }
 
     @Override
@@ -101,7 +100,7 @@ public class User {
                 ", description='" + description + '\'' +
                 ", created_Time=" + created_Time +
                 ", url='" + url + '\'' +
-                ", avatar_url='" + avatar_url + '\'' +
+                ", avatar_720_url='" + avatar_720_url + '\'' +
                 '}';
     }
 }

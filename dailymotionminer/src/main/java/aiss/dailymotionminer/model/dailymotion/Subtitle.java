@@ -30,9 +30,12 @@ public class Subtitle {
     @JsonProperty("url")
     private String url;
 
+    @JsonProperty("id")
     public String getId() {
         return id;
     }
+
+    @JsonProperty("id")
     public void setId(String id) {
         this.id = id;
     }
