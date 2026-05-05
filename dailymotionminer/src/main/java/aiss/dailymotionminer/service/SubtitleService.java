@@ -34,13 +34,14 @@ public class SubtitleService {
      */
 
     public List<VMCaption> getVMCaptions(String videoId) {
-        String uri = baseUri + "/video/" + videoId + "/subtitles";
+        String uri = baseUri + "/video/" + videoId + "/subtitles?fields=id,language,url";
         List<Subtitle> captions;
 
         ResponseEntity<SubtitleSearch> response = restTemplate.exchange(
                 uri,
                 HttpMethod.GET,
-                null, SubtitleSearch.class
+                null,
+                SubtitleSearch.class
         );
 
         if (response.getBody() == null || response.getBody().getList() == null) {
