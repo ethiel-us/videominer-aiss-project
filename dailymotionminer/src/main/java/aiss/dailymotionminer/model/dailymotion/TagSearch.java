@@ -10,22 +10,22 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @JsonPropertyOrder({
-    "array"
+    "tags"
 })
 @Generated("jsonschema2pojo")
 public class TagSearch {
 
-    @JsonProperty("array")
-    private List<Tag> array;
+    @JsonProperty("tags")
+    private List<Tag> tags;
 
-    @JsonProperty("array")
-    public List<Tag> getArray() {
-        return array;
+    @JsonProperty("tags")
+    public List<Tag> getTags() {
+        return tags;
     }
 
-    @JsonProperty("array")
-    public void setArray(List<Tag> array) {
-        this.array = array;
+    @JsonProperty("tags")
+    public void setTags(List<Tag> tag) {
+        this.tags = tags;
     }
 
     @Override
@@ -34,7 +34,7 @@ public class TagSearch {
         sb.append(TagSearch.class.getName()).append('@').append(Integer.toHexString(System.identityHashCode(this))).append('[');
         sb.append("array");
         sb.append('=');
-        sb.append(((this.array == null)?"<null>":this.array));
+        sb.append(((this.tags == null)?"<null>":this.tags));
         sb.append(',');
         if (sb.charAt((sb.length()- 1)) == ',') {
             sb.setCharAt((sb.length()- 1), ']');

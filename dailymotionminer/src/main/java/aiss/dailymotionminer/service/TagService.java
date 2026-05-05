@@ -44,11 +44,11 @@ public class TagService {
                 TagSearch.class
         );
 
-        if (response.getBody() == null || response.getBody().getArray() == null) {
+        if (response.getBody() == null || response.getBody().getTags() == null) {
             return new ArrayList<>();
         }
 
-        ptComments = response.getBody().getArray();
+        ptComments = response.getBody().getTags();
 
         // For each dailymotion comment, map it to a videominer comment
         return ptComments.stream()
