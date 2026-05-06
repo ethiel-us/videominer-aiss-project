@@ -5,6 +5,7 @@ import aiss.peertubeminer.model.videominer.*;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
+import java.util.UUID;
 
 /**
  * Transformer class responsible for mapping Peertube objects into VideoMiner objects.
@@ -29,7 +30,7 @@ public class Transformer {
         }
 
         return VMUser.of(
-                String.valueOf(user.getId()),
+                null, // Sin ID para que no de error videominer
                 user.getDisplayName(),
                 user.getUrl(),
                 avatarUri
@@ -50,7 +51,7 @@ public class Transformer {
         if (c == null) return null;
 
         return VMCaption.of(
-                c.getLanguage().getId(),
+                UUID.randomUUID().toString(),
                 c.getFileUrl(),
                 c.getLanguage().getLabel()
         );

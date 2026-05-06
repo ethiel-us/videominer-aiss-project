@@ -9,11 +9,12 @@ import org.springframework.web.client.RestTemplate;
 @SpringBootApplication
 public class VideominerApplication {
 
-	public static void main(String[] args) {
-		SpringApplication.run(VideominerApplication.class, args);
-	}
-	@Bean
-	public RestTemplate restTemplate(RestTemplateBuilder builder) {
-		return builder.build();
-	}
+    public static void main(String[] args) {
+        SpringApplication.run(VideominerApplication.class, args);
+    }
+
+    @Bean
+    public RestTemplate restTemplate(RestTemplateBuilder builder) {
+        return builder.build();
+    }
 }

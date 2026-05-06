@@ -1,8 +1,10 @@
 package aiss.videominer.model;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import jakarta.persistence.*;
-import jakarta.validation.constraints.NotNull;
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
+import jakarta.persistence.Table;
 
 /**
  * @author Juan C. Alonso
@@ -16,7 +18,7 @@ public class Comment {
     private String id;
 
     @JsonProperty("text")
-    @Column(name = "text", columnDefinition="TEXT")
+    @Column(name = "text", columnDefinition = "TEXT")
     private String text;
 
     @JsonProperty("createdOn")

@@ -14,8 +14,13 @@ public class CaptionService {
     @Autowired
     private CaptionRepository captionRepository;
 
-    public List<Caption> getAllCaptions() {return captionRepository.findAll();}
-    public Caption getCaptionById(String id) { return captionRepository.findById(id).orElse(null);}
+    public List<Caption> getAllCaptions() {
+        return captionRepository.findAll();
+    }
+
+    public Caption getCaptionById(String id) {
+        return captionRepository.findById(id).orElse(null);
+    }
 
 
 }

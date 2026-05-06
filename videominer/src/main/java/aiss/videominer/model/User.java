@@ -2,7 +2,6 @@ package aiss.videominer.model;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.persistence.*;
-import jakarta.validation.constraints.NotEmpty;
 
 /**
  * @author Juan C. Alonso
@@ -12,8 +11,9 @@ import jakarta.validation.constraints.NotEmpty;
 public class User {
 
     @Id
-    @JsonProperty("id")
+    // Da error si mandamos el id desde los minadores
     @GeneratedValue(strategy = GenerationType.AUTO)
+    @JsonProperty("id")
     private Long id;
 
     @JsonProperty("name")

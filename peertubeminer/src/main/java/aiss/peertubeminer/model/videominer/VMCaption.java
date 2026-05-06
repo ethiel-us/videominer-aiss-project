@@ -1,26 +1,25 @@
 package aiss.peertubeminer.model.videominer;
 
-import aiss.peertubeminer.model.peertube.Caption;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class VMCaption {
 
     private String id;
-    private String link;
+    private String name;
     private String language;
 
     public VMCaption() {
     }
 
-    public VMCaption(String id, String link, String language) {
+    public VMCaption(String id, String name, String language) {
         this.id = id;
-        this.link = link;
+        this.name = name;
         this.language = language;
     }
 
-    public static VMCaption of(String id, String link, String language) {
-        return new VMCaption(id, link, language);
+    public static VMCaption of(String id, String name, String language) {
+        return new VMCaption(id, name, language);
     }
 
     public String getId() {
@@ -31,12 +30,12 @@ public class VMCaption {
         this.id = id;
     }
 
-    public String getLink() {
-        return link;
+    public String getName() {
+        return name;
     }
 
-    public void setLink(String link) {
-        this.link = link;
+    public void setName(String name) {
+        this.name = name;
     }
 
     public String getLanguage() {
@@ -51,7 +50,7 @@ public class VMCaption {
     public String toString() {
         return "Caption{" +
                 "id='" + id + '\'' +
-                ", link='" + link + '\'' +
+                ", link='" + name + '\'' +
                 ", language='" + language + '\'' +
                 '}';
     }

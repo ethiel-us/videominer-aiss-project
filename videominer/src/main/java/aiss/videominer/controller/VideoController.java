@@ -14,7 +14,10 @@ import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 
@@ -30,7 +33,7 @@ public class VideoController {
     @Operation(
             summary = "Listar todos los vídeos",
             description = "Devuelve una lista con todos los vídeos almacenados de todas las plataformas",
-            tags = { "videos", "get" }
+            tags = {"videos", "get"}
     )
     @ApiResponse(
             responseCode = "200",
@@ -44,12 +47,12 @@ public class VideoController {
     @Operation(summary = "Obtener un vídeo por ID", description = "Devuelve un vídeo según por su identificador")
     @ApiResponses({
             @ApiResponse(responseCode = "200", description = "Vídeo encontrado",
-                    content = { @Content(schema = @Schema(implementation = Video.class), mediaType = "application/json") }),
+                    content = {@Content(schema = @Schema(implementation = Video.class), mediaType = "application/json")}),
             @ApiResponse(responseCode = "404", description = "Vídeo no encontrado")
     })
     @GetMapping("/{id}")
     public Video getVideoById(
-            @Parameter(description = "ID del vídeo a buscar") @PathVariable String id) {
+            @Parameter(description = "ID del vídeo a buscar") @PathVariable String id) throws ResourceNotFoundException {
         return repository.findById(id)
                 .orElseThrow(() -> new ResourceNotFoundException("Video no encontrado con id: " + id));
     }
@@ -61,7 +64,7 @@ public class VideoController {
     })
     @GetMapping("/{id}/comments")
     public List<Comment> getCommentsByVideo(
-            @Parameter(description = "ID del vídeo") @PathVariable String id) {
+            @Parameter(description = "ID del vídeo") @PathVariable String id) throws ResourceNotFoundException {
         Video video = repository.findById(id)
                 .orElseThrow(() -> new ResourceNotFoundException("Video no encontrado con id: " + id));
         return video.getComments();
@@ -74,7 +77,7 @@ public class VideoController {
     })
     @GetMapping("/{id}/captions")
     public List<Caption> getCaptionsByVideo(
-            @Parameter(description = "ID del vídeo") @PathVariable String id) {
+            @Parameter(description = "ID del vídeo") @PathVariable String id) throws ResourceNotFoundException {
         Video video = repository.findById(id)
                 .orElseThrow(() -> new ResourceNotFoundException("Video no encontrado con id: " + id));
         return video.getCaptions();

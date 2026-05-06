@@ -17,7 +17,10 @@ public class VideoService {
     @Autowired
     private VideoRepository videoRepository;
 
-    public List<Video> getAllVideos() { return videoRepository.findAll();}
+    public List<Video> getAllVideos() {
+        return videoRepository.findAll();
+    }
+
     public Video getVideoById(String id) {
         Optional<Video> video = videoRepository.findById(id);
         return video.orElse(null);

@@ -3,7 +3,6 @@ package aiss.videominer.model;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotEmpty;
-import jakarta.validation.constraints.NotNull;
 
 import java.util.List;
 
@@ -24,7 +23,7 @@ public class Video {
     private String name;
 
     @JsonProperty("description")
-    @Column(name = "description", columnDefinition="TEXT")
+    @Column(name = "description", columnDefinition = "TEXT")
     private String description;
 
     @JsonProperty("releaseTime")
@@ -33,7 +32,8 @@ public class Video {
     private String releaseTime;
 
     @JsonProperty("user")
-    @OneToOne(cascade = CascadeType.ALL)
+    //Antes tenía OneToOne (un vídeo por usuario), por lo que daba error.
+    @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "userId")
     private User author;
 
@@ -86,7 +86,7 @@ public class Video {
     public void setAuthor(User author) {
         this.author = author;
     }
-    
+
     public List<Comment> getComments() {
         return comments;
     }

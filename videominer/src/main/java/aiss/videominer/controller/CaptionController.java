@@ -11,9 +11,11 @@ import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import io.swagger.v3.oas.annotations.tags.Tag;
-
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 
@@ -28,7 +30,7 @@ public class CaptionController {
     @Operation(
             summary = "Listar todas las captions",
             description = "Obtiene una lista global de todos los subtítulos almacenados en el sistema",
-            tags = { "captions", "get" }
+            tags = {"captions", "get"}
     )
     @ApiResponse(
             responseCode = "200",
@@ -45,12 +47,12 @@ public class CaptionController {
     )
     @ApiResponses({
             @ApiResponse(responseCode = "200", description = "Caption encontrada",
-                    content = { @Content(schema = @Schema(implementation = Caption.class), mediaType = "application/json") }),
+                    content = {@Content(schema = @Schema(implementation = Caption.class), mediaType = "application/json")}),
             @ApiResponse(responseCode = "404", description = "Caption no encontrada")
     })
     @GetMapping("/{id}")
     public Caption getCaptionById(
-            @Parameter(description = "ID de la caption") @PathVariable String id) {
+            @Parameter(description = "ID de la caption") @PathVariable String id) throws ResourceNotFoundException {
         return repository.findById(id)
                 .orElseThrow(() -> new ResourceNotFoundException("Caption no encontrada con id: " + id));
     }

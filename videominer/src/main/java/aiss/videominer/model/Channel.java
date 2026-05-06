@@ -25,7 +25,7 @@ public class Channel {
     private String name;
 
     @JsonProperty("description")
-    @Column(name = "description", columnDefinition="TEXT")
+    @Column(name = "description", columnDefinition = "TEXT")
     private String description;
 
     @JsonProperty("createdTime")
