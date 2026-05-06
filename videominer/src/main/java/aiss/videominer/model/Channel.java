@@ -21,18 +21,20 @@ public class Channel {
 
     @JsonProperty("name")
     @NotEmpty(message = "Channel name cannot be empty")
+    @Column(name = "name")
     private String name;
 
     @JsonProperty("description")
-    @Column(columnDefinition="TEXT")
+    @Column(name = "description", columnDefinition="TEXT")
     private String description;
 
     @JsonProperty("createdTime")
     @NotEmpty(message = "Channel creation time cannot be empty")
+    @Column(name = "createdTime")
     private String createdTime;
 
     @JsonProperty("videos")
-    @OneToMany(cascade = CascadeType.ALL)
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, orphanRemoval = true)
     @JoinColumn(name = "channelId")
     @NotNull(message = "Channel videos cannot be null")
     private List<Video> videos;

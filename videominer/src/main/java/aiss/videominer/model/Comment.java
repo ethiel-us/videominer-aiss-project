@@ -16,10 +16,11 @@ public class Comment {
     private String id;
 
     @JsonProperty("text")
-    @Column(columnDefinition="TEXT")
+    @Column(name = "text", columnDefinition="TEXT")
     private String text;
 
     @JsonProperty("createdOn")
+    @Column(name = "createdOn")
     private String createdOn;
 
     public String getId() {

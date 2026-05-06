@@ -20,27 +20,30 @@ public class Video {
 
     @JsonProperty("name")
     @NotEmpty(message = "Video name cannot be empty")
+    @Column(name = "name")
     private String name;
 
     @JsonProperty("description")
-    @Column(columnDefinition="TEXT")
+    @Column(name = "description", columnDefinition="TEXT")
     private String description;
 
     @JsonProperty("releaseTime")
     @NotEmpty(message = "Video release time cannot be empty")
+    @Column(name = "releaseTime")
     private String releaseTime;
 
     @JsonProperty("user")
     @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "userId")
     private User author;
 
     @JsonProperty("comments")
-    @OneToMany(cascade = CascadeType.ALL)
+    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
     @JoinColumn(name = "videoId")
     private List<Comment> comments;
 
     @JsonProperty("captions")
-    @OneToMany(cascade = CascadeType.ALL)
+    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
     @JoinColumn(name = "videoId")
     private List<Caption> captions;
 
