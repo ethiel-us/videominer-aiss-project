@@ -2,6 +2,8 @@ package aiss.videominer.model;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 
 /**
  * @author Juan C. Alonso
@@ -12,14 +14,17 @@ public class Caption {
 
     @Id
     @JsonProperty("id")
+    @NotNull(message = "Caption id cannot be null")
     private String id;
 
     @JsonProperty("name")
     @Column(name = "name")
+    @NotBlank(message = "Caption name cannot be blank")
     private String name;
 
     @JsonProperty("language")
     @Column(name = "language")
+    @NotBlank(message = "Caption language cannot be blank")
     private String language;
 
 

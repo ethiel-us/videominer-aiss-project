@@ -5,6 +5,8 @@ import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 
 /**
  * @author Juan C. Alonso
@@ -15,14 +17,17 @@ public class Comment {
 
     @Id
     @JsonProperty("id")
+    @NotNull(message = "Comment id cannot be null")
     private String id;
 
     @JsonProperty("text")
     @Column(name = "text", columnDefinition = "TEXT")
+    @NotBlank(message = "Comment text cannot be blank")
     private String text;
 
     @JsonProperty("createdOn")
     @Column(name = "createdOn")
+    @NotNull(message = "Comment creation time cannot be null")
     private String createdOn;
 
     public String getId() {

@@ -2,7 +2,8 @@ package aiss.videominer.model;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.persistence.*;
-import jakarta.validation.constraints.NotEmpty;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 
 import java.util.List;
 
@@ -15,10 +16,11 @@ public class Video {
 
     @Id
     @JsonProperty("id")
+    @NotNull(message = "Video id cannot be null")
     private String id;
 
     @JsonProperty("name")
-    @NotEmpty(message = "Video name cannot be empty")
+    @NotBlank(message = "Video name cannot be blank")
     @Column(name = "name")
     private String name;
 
@@ -27,12 +29,11 @@ public class Video {
     private String description;
 
     @JsonProperty("releaseTime")
-    @NotEmpty(message = "Video release time cannot be empty")
+    @NotNull(message = "Video release time cannot be null")
     @Column(name = "releaseTime")
     private String releaseTime;
 
     @JsonProperty("user")
-    //Antes tenía OneToOne (un vídeo por usuario), por lo que daba error.
     @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "userId")
     private User author;

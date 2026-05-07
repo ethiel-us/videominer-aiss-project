@@ -11,8 +11,7 @@ import jakarta.persistence.*;
 public class User {
 
     @Id
-    // Da error si mandamos el id desde los minadores
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @JsonProperty("id")
     private Long id;
 

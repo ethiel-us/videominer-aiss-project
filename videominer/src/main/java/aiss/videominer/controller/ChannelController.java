@@ -2,9 +2,7 @@ package aiss.videominer.controller;
 
 
 import aiss.videominer.exception.ResourceNotFoundException;
-import aiss.videominer.model.Caption;
 import aiss.videominer.model.Channel;
-import aiss.videominer.model.Video;
 import aiss.videominer.repository.ChannelRepository;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
@@ -20,9 +18,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.UUID;
 
-@Tag(name = "Channel", description = "API de gestión de canales de vídeo")
+@Tag(name = "Channel", description = "Channel management operations")
 @RestController
 @RequestMapping("/videominer/channels")
 public class ChannelController {
@@ -31,24 +28,34 @@ public class ChannelController {
     private ChannelRepository repository;
 
     @Operation(
-            summary = "Listar todos los canales",
-            description = "Obtiene una lista completa de todos los canales de PeerTube/Dailymotion almacenados",
+            summary = "Retrieve all channels",
+            description = "Returns a complete list of all stored PeerTube/Dailymotion channels",
             tags = {"channels", "get"}
     )
     @ApiResponse(
             responseCode = "200",
-            description = "Lista de canales obtenida con éxito",
-            content = @Content(array = @ArraySchema(schema = @Schema(implementation = Channel.class))))
+            description = "List of channels retrieved successfully",
+            content = @Content(array = @ArraySchema(schema = @Schema(implementation = Channel.class)))
+    )
     @GetMapping
     public List<Channel> getAllChannels() {
         return repository.findAll();
     }
 
-    @Operation(summary = "Obtener un canal por su ID", description = "Devuelve el canal completo incluyendo sus vídeos")
+    @Operation(
+            summary = "Retrieve a channel by ID",
+            description = "Returns a channel including all its videos"
+    )
     @ApiResponses({
-            @ApiResponse(responseCode = "200", description = "Canal encontrado",
-                    content = {@Content(schema = @Schema(implementation = Channel.class), mediaType = "application/json")}),
-            @ApiResponse(responseCode = "404", description = "Canal no encontrado", content = @Content(schema = @Schema()))
+            @ApiResponse(
+                    responseCode = "200", description = "Channel found",
+                    content = {@Content(schema = @Schema(implementation = Channel.class), mediaType = "application/json")}
+            ),
+            @ApiResponse(
+                    responseCode = "404",
+                    description = "Channel not found",
+                    content = @Content(schema = @Schema())
+            )
     })
     @GetMapping("/{id}")
     public Channel getChannelById(
@@ -59,18 +66,22 @@ public class ChannelController {
                 .orElseThrow(() -> new ResourceNotFoundException("Channel not found with id: " + id));
     }
 
-    @Operation(summary = "Crear un nuevo canal", description = "Crea un nuevo canal")
+    @Operation(
+            summary = "Create a new channel", description = "Creates and store a new channel"
+    )
     @ApiResponses({
-            @ApiResponse(responseCode = "201", description = "Canal creado correctamente",
-                    content = @Content(schema = @Schema(implementation = Channel.class))),
-            @ApiResponse(responseCode = "400", description = "Petición incorrecta")
+            @ApiResponse(
+                    responseCode = "201", description = "Channel created successfully",
+                    content = @Content(schema = @Schema(implementation = Channel.class))
+            ),
+            @ApiResponse(
+                    responseCode = "400",
+                    description = "Bad request"
+            )
     })
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
     public Channel create(@Valid @RequestBody Channel channel) {
-
         return repository.save(channel);
     }
-
-
 }
