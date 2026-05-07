@@ -59,7 +59,7 @@ public class ChannelController {
     })
     @GetMapping("/{id}")
     public Channel getChannelById(
-            @Parameter(description = "ID único del canal")
+            @Parameter(description = "Channel ID")
             @PathVariable String id
     ) throws ResourceNotFoundException {
         return repository.findById(id)

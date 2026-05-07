@@ -19,7 +19,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 
-@Tag(name = "Caption", description = "API para la consulta de captions de los vídeos")
+@Tag(name = "Caption", description = "Caption management operations")
 @RestController
 @RequestMapping("/videominer/captions")
 public class CaptionController {
@@ -28,13 +28,13 @@ public class CaptionController {
     private CaptionRepository repository;
 
     @Operation(
-            summary = "Listar todas las captions",
-            description = "Obtiene una lista global de todos los subtítulos almacenados en el sistema",
+            summary = "Retrieve all captions",
+            description = "Returns a list of all captions stored in database",
             tags = {"captions", "get"}
     )
     @ApiResponse(
             responseCode = "200",
-            description = "Lista de captions obtenida con éxito",
+            description = "List of captions retrieved succesfully",
             content = @Content(array = @ArraySchema(schema = @Schema(implementation = Caption.class))))
     @GetMapping
     public List<Caption> getAllCaptions() {
@@ -42,19 +42,19 @@ public class CaptionController {
     }
 
     @Operation(
-            summary = "Obtener una caption por ID",
-            description = "Devuelve los detalles de una caption"
+            summary = "Retrieve a caption by ID",
+            description = "Returns a specific caption by ID"
     )
     @ApiResponses({
-            @ApiResponse(responseCode = "200", description = "Caption encontrada",
+            @ApiResponse(responseCode = "200", description = "Caption found",
                     content = {@Content(schema = @Schema(implementation = Caption.class), mediaType = "application/json")}),
-            @ApiResponse(responseCode = "404", description = "Caption no encontrada")
+            @ApiResponse(responseCode = "404", description = "Caption not found")
     })
     @GetMapping("/{id}")
     public Caption getCaptionById(
-            @Parameter(description = "ID de la caption") @PathVariable String id) throws ResourceNotFoundException {
+            @Parameter(description = "Caption ID") @PathVariable String id) throws ResourceNotFoundException {
         return repository.findById(id)
-                .orElseThrow(() -> new ResourceNotFoundException("Caption no encontrada con id: " + id));
+                .orElseThrow(() -> new ResourceNotFoundException("Caption not found with id: " + id));
     }
 
 }

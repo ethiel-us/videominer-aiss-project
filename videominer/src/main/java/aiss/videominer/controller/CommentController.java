@@ -19,7 +19,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 
-@Tag(name = "Comment", description = "API para la consulta de comentarios de los vídeos")
+@Tag(name = "Comment", description = "Comment management operations")
 @RestController
 @RequestMapping("/videominer/comments")
 public class CommentController {
@@ -28,13 +28,13 @@ public class CommentController {
     private CommentRepository repository;
 
     @Operation(
-            summary = "Listar todos los comentarios",
-            description = "Obtiene una lista global de todos los comentarios almacenados en el sistema",
+            summary = "List all comments",
+            description = "Returns a list of all comments stored in database",
             tags = {"comments", "get"}
     )
     @ApiResponse(
             responseCode = "200",
-            description = "Lista de comentarios obtenida con éxito",
+            description = "List of comments retrieved succesfully",
             content = @Content(array = @ArraySchema(schema = @Schema(implementation = Comment.class))))
     @GetMapping
     public List<Comment> getAllComments() {
@@ -42,19 +42,19 @@ public class CommentController {
     }
 
     @Operation(
-            summary = "Obtener un comentario por ID",
-            description = "Devuelve el texto y la fecha de creación de un comentario específico"
+            summary = "Retrieve a comment by ID",
+            description = "Returns a comment searched by its ID"
     )
     @ApiResponses({
-            @ApiResponse(responseCode = "200", description = "Comentario encontrado",
+            @ApiResponse(responseCode = "200", description = "Comment found",
                     content = {@Content(schema = @Schema(implementation = Comment.class), mediaType = "application/json")}),
-            @ApiResponse(responseCode = "404", description = "Comentario no encontrado")
+            @ApiResponse(responseCode = "404", description = "Comment not found")
     })
     @GetMapping("/{id}")
     public Comment getCommentById(
-            @Parameter(description = "ID del comentario") @PathVariable String id) throws ResourceNotFoundException {
+            @Parameter(description = "Comment ID") @PathVariable String id) throws ResourceNotFoundException {
         return repository.findById(id)
-                .orElseThrow(() -> new ResourceNotFoundException("Comentario no encontrado con id: " + id));
+                .orElseThrow(() -> new ResourceNotFoundException("Comment not found with id: " + id));
     }
 
 }

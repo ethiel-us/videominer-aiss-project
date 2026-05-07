@@ -22,7 +22,7 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.List;
 
 
-@Tag(name = "Video", description = "API para la consulta de vídeos, sus comentarios y subtítulos")
+@Tag(name = "Video", description = "Video management operations")
 @RestController
 @RequestMapping("/videominer/videos")
 public class VideoController {
@@ -31,55 +31,55 @@ public class VideoController {
     private VideoRepository repository;
 
     @Operation(
-            summary = "Listar todos los vídeos",
-            description = "Devuelve una lista con todos los vídeos almacenados de todas las plataformas",
+            summary = "Retrieve all videos",
+            description = "Returns a list of all videos stored in database",
             tags = {"videos", "get"}
     )
     @ApiResponse(
             responseCode = "200",
-            description = "Lista de vídeos obtenida con éxito",
+            description = "List of all videos retrieved succesfully",
             content = @Content(array = @ArraySchema(schema = @Schema(implementation = Video.class))))
     @GetMapping
     public List<Video> getAllVideos() {
         return repository.findAll();
     }
 
-    @Operation(summary = "Obtener un vídeo por ID", description = "Devuelve un vídeo según por su identificador")
+    @Operation(summary = "Retrieve a video by ID", description = "Returns a video by ID")
     @ApiResponses({
-            @ApiResponse(responseCode = "200", description = "Vídeo encontrado",
+            @ApiResponse(responseCode = "200", description = "Vídeo found",
                     content = {@Content(schema = @Schema(implementation = Video.class), mediaType = "application/json")}),
-            @ApiResponse(responseCode = "404", description = "Vídeo no encontrado")
+            @ApiResponse(responseCode = "404", description = "Vídeo not found")
     })
     @GetMapping("/{id}")
     public Video getVideoById(
-            @Parameter(description = "ID del vídeo a buscar") @PathVariable String id) throws ResourceNotFoundException {
+            @Parameter(description = "Video ID") @PathVariable String id) throws ResourceNotFoundException {
         return repository.findById(id)
-                .orElseThrow(() -> new ResourceNotFoundException("Video no encontrado con id: " + id));
+                .orElseThrow(() -> new ResourceNotFoundException("Video not found with id: " + id));
     }
 
-    @Operation(summary = "Obtener comentarios de un vídeo", description = "Devuelve la lista de comentarios asociados a un vídeo concreto")
+    @Operation(summary = "Retrieve a list of comments", description = "Returns a list of comments posted in an specific video")
     @ApiResponses({
-            @ApiResponse(responseCode = "200", description = "Lista de comentarios"),
-            @ApiResponse(responseCode = "404", description = "Vídeo no encontrado")
+            @ApiResponse(responseCode = "200", description = "List of comments"),
+            @ApiResponse(responseCode = "404", description = "Vídeo not found")
     })
     @GetMapping("/{id}/comments")
     public List<Comment> getCommentsByVideo(
-            @Parameter(description = "ID del vídeo") @PathVariable String id) throws ResourceNotFoundException {
+            @Parameter(description = "Video ID") @PathVariable String id) throws ResourceNotFoundException {
         Video video = repository.findById(id)
-                .orElseThrow(() -> new ResourceNotFoundException("Video no encontrado con id: " + id));
+                .orElseThrow(() -> new ResourceNotFoundException("Video not found with id: " + id));
         return video.getComments();
     }
 
-    @Operation(summary = "Obtener captions de un vídeo", description = "Devuelve las captions de un vídeo")
+    @Operation(summary = "Retrieve a list of captions from a video", description = "Returns a list of captions posted in an specific video")
     @ApiResponses({
-            @ApiResponse(responseCode = "200", description = "Lista de captions"),
-            @ApiResponse(responseCode = "404", description = "Vídeo no encontrado")
+            @ApiResponse(responseCode = "200", description = "List of captions"),
+            @ApiResponse(responseCode = "404", description = "Vídeo not found")
     })
     @GetMapping("/{id}/captions")
     public List<Caption> getCaptionsByVideo(
-            @Parameter(description = "ID del vídeo") @PathVariable String id) throws ResourceNotFoundException {
+            @Parameter(description = "Video ID") @PathVariable String id) throws ResourceNotFoundException {
         Video video = repository.findById(id)
-                .orElseThrow(() -> new ResourceNotFoundException("Video no encontrado con id: " + id));
+                .orElseThrow(() -> new ResourceNotFoundException("Video not found with id " + id));
         return video.getCaptions();
     }
 
