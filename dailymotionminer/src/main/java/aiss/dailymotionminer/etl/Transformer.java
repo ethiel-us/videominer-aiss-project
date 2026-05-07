@@ -30,7 +30,7 @@ public class Transformer {
         }
 
         return VMUser.of(
-                String.valueOf(user.getId()),
+                null,
                 user.getScreenname(),
                 user.getUrl(),
                 avatarUri

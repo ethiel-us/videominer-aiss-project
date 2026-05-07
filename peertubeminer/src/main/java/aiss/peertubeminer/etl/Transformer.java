@@ -51,7 +51,7 @@ public class Transformer {
         if (c == null) return null;
 
         return VMCaption.of(
-                UUID.randomUUID().toString(),
+                c.getLanguage().getId(),
                 c.getFileUrl(),
                 c.getLanguage().getLabel()
         );
@@ -71,6 +71,7 @@ public class Transformer {
         );
 
         vmVideo.setComments(comments);
+        captions.stream().forEach(c->c.setId(v.getUuid()+c.getId()));
         vmVideo.setCaptions(captions);
 
         return vmVideo;
