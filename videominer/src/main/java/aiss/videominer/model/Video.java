@@ -16,7 +16,7 @@ public class Video {
 
     @Id
     @JsonProperty("id")
-    @NotNull(message = "Video id cannot be null")
+    @NotBlank(message = "Video id cannot be null")
     private String id;
 
     @JsonProperty("name")
@@ -29,7 +29,7 @@ public class Video {
     private String description;
 
     @JsonProperty("releaseTime")
-    @NotNull(message = "Video release time cannot be null")
+    @NotBlank(message = "Video release time cannot be null")
     @Column(name = "releaseTime")
     private String releaseTime;
 

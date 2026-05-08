@@ -18,7 +18,7 @@ public class Channel {
 
     @Id
     @JsonProperty("id")
-    @NotNull(message = "Channel id cannot be null")
+    @NotBlank(message = "Channel id cannot be null")
     private String id;
 
     @JsonProperty("name")

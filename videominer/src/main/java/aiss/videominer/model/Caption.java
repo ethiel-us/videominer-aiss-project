@@ -14,7 +14,7 @@ public class Caption {
 
     @Id
     @JsonProperty("id")
-    @NotNull(message = "Caption id cannot be null")
+    @NotBlank(message = "Caption id cannot be null")
     private String id;
 
     @JsonProperty("name")

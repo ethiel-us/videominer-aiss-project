@@ -17,7 +17,7 @@ public class Comment {
 
     @Id
     @JsonProperty("id")
-    @NotNull(message = "Comment id cannot be null")
+    @NotBlank(message = "Comment id cannot be null")
     private String id;
 
     @JsonProperty("text")
@@ -27,7 +27,7 @@ public class Comment {
 
     @JsonProperty("createdOn")
     @Column(name = "createdOn")
-    @NotNull(message = "Comment creation time cannot be null")
+    @NotBlank(message = "Comment creation time cannot be null")
     private String createdOn;
 
     public String getId() {

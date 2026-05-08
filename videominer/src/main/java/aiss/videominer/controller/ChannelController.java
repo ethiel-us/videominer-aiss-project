@@ -84,4 +84,45 @@ public class ChannelController {
     public Channel create(@Valid @RequestBody Channel channel) {
         return repository.save(channel);
     }
+
+    @Operation(
+            summary = "Update a channel", description = "Updates an existing channel by its ID"
+    )
+    @ApiResponses({
+            @ApiResponse(responseCode = "200", description = "Channel updated successfully"),
+            @ApiResponse(responseCode = "400", description = "Invalid channel data"),
+            @ApiResponse(responseCode = "404", description = "Channel not found")
+    })
+    @PutMapping("/{id}")
+    @ResponseStatus(HttpStatus.OK)
+    public Channel update(
+            @Parameter(description = "ID of the channel to update") @PathVariable String id,
+            @Valid @RequestBody Channel updatedChannel
+    ) throws ResourceNotFoundException {
+        if (!repository.existsById(id)) {
+            throw new ResourceNotFoundException("Channel not found with id: " + id);
+        }
+        updatedChannel.setId(id);
+        return repository.save(updatedChannel);
+    }
+
+    @Operation(
+            summary = "Delete a channel", description = "Deletes a channel and all its videos by its ID"
+    )
+    @ApiResponses({
+            @ApiResponse(responseCode = "204", description = "Channel deleted successfully"),
+            @ApiResponse(responseCode = "404", description = "Channel not found")
+    })
+    @DeleteMapping("/{id}")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    public void delete(
+            @Parameter(description = "ID of the channel to delete") @PathVariable String id
+    ) throws ResourceNotFoundException {
+        if (repository.existsById(id)) {
+            repository.deleteById(id);
+        } else {
+            throw new ResourceNotFoundException("Channel not found with id: " + id);
+        }
+    }
+
 }
