@@ -1,6 +1,8 @@
 package aiss.dailymotionminer.controller;
 
 
+import aiss.dailymotionminer.exception.ChannelNotFoundException;
+import aiss.dailymotionminer.exception.VideoMinerCommunicationException;
 import aiss.dailymotionminer.model.videominer.VMChannel;
 import aiss.dailymotionminer.service.ChannelService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,7 +28,7 @@ public class ChannelController {
     public VMChannel getChannel(
             @PathVariable String id,
             @RequestParam(defaultValue = "10") Integer maxVideos,
-            @RequestParam(defaultValue = "10") Integer maxComments) {
+            @RequestParam(defaultValue = "10") Integer maxComments) throws ChannelNotFoundException{
         return channelService.getVMChannel(id, maxVideos, maxComments);
     }
 
@@ -42,7 +44,7 @@ public class ChannelController {
     public VMChannel create(
             @PathVariable String id,
             @RequestParam(defaultValue = "10") Integer maxVideos,
-            @RequestParam(defaultValue = "10") Integer maxComments) {
+            @RequestParam(defaultValue = "10") Integer maxComments) throws ChannelNotFoundException, VideoMinerCommunicationException {
         VMChannel channel = channelService.getVMChannel(id, maxVideos, maxComments);
 
         return channelService.sendToVideominer(channel);
