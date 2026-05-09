@@ -54,8 +54,6 @@ public class ChannelService {
                     Channel.class
             );
 
-            if (response.getBody() == null) throw new ChannelNotFoundException("Channel with id " + channelId + " does not exists");
-
             List<VMVideo> vmVideos = videoService.getVMVideos(channelId, maxVideos, maxComments);
 
             Channel channel = response.getBody();
