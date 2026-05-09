@@ -80,7 +80,7 @@ public class VideoController {
     public List<Caption> getCaptionsByVideo(
             @Parameter(description = "Video ID") @PathVariable String id) throws ResourceNotFoundException {
         Video video = repository.findById(id)
-                .orElseThrow(() -> new ResourceNotFoundException("Video not found with id " + id));
+                .orElseThrow(() -> new ResourceNotFoundException("Video with id " + id + " not found"));
         return video.getCaptions();
     }
 

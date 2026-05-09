@@ -100,7 +100,7 @@ public class ChannelController {
             @Valid @RequestBody Channel updatedChannel
     ) throws ResourceNotFoundException {
         if (!repository.existsById(id)) {
-            throw new ResourceNotFoundException("Channel not found with id: " + id);
+            throw new ResourceNotFoundException("Channel with id: " + id + " not found");
         }
         updatedChannel.setId(id);
         return repository.save(updatedChannel);

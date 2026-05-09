@@ -1,5 +1,6 @@
 package aiss.dailymotionminer.service;
 
+import aiss.dailymotionminer.exception.ChannelNotFoundException;
 import aiss.dailymotionminer.model.videominer.VMChannel;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,7 +15,7 @@ class ChannelServiceTest {
     ChannelService channelService;
 
     @Test
-    void getVMChannel() {
+    void getVMChannel() throws ChannelNotFoundException {
         // Use a known Dailymotion user ID, e.g., 'cnn'
         String channelId = "cnn";
         VMChannel channel = channelService.getVMChannel(channelId, 1, 0);

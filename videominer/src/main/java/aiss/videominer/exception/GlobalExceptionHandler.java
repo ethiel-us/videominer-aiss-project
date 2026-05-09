@@ -8,22 +8,32 @@ import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 
 @ControllerAdvice
-    public class GlobalExceptionHandler {
-        @ExceptionHandler(MethodArgumentNotValidException.class)
-        @ResponseBody
-        public ResponseEntity<Map<String, List<String>>> handleValidationException(MethodArgumentNotValidException ex) {
-            List<FieldError> fieldErrors = ex.getBindingResult().getFieldErrors();
-            List<String> errors = fieldErrors.stream()
-                    .map(FieldError::getDefaultMessage)
-                    .collect(Collectors.toList());
-            Map<String, List<String>> res = new HashMap<>();
-            res.put("errors", errors);
-            return new ResponseEntity<>(res, HttpStatus.BAD_REQUEST);
-        }
+public class GlobalExceptionHandler {
+    @ExceptionHandler(MethodArgumentNotValidException.class)
+    @ResponseBody
+    public ResponseEntity<Map<String, List<String>>> handleValidationException(MethodArgumentNotValidException ex) {
+        List<FieldError> fieldErrors = ex.getBindingResult().getFieldErrors();
+        List<String> errors = fieldErrors.stream()
+                .map(FieldError::getDefaultMessage)
+                .collect(Collectors.toList());
+        Map<String, List<String>> res = new LinkedHashMap<>();
+        res.put("status", List.of(HttpStatus.BAD_REQUEST.toString()));
+        res.put("errors", errors);
+        return new ResponseEntity<>(res, HttpStatus.BAD_REQUEST);
     }
+
+    @ExceptionHandler(ResourceNotFoundException.class)
+    @ResponseBody
+    public ResponseEntity<Map<String, String>> handleResourceNotFoundException(ResourceNotFoundException ex) {
+        Map<String, String> res = new LinkedHashMap<>();
+        res.put("status", HttpStatus.NOT_FOUND.toString());
+        res.put("error", ex.getMessage());
+        return new ResponseEntity<>(res, HttpStatus.NOT_FOUND);
+    }
+}

@@ -57,7 +57,7 @@ public class CaptionController {
     public Caption getCaptionById(
             @Parameter(description = "Caption ID") @PathVariable String id) throws ResourceNotFoundException {
         return repository.findById(id)
-                .orElseThrow(() -> new ResourceNotFoundException("Caption not found with id: " + id));
+                .orElseThrow(() -> new ResourceNotFoundException("Caption with id: " + id + " not found"));
     }
 
 }

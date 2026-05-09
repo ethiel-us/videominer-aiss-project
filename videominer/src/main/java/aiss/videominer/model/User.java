@@ -3,6 +3,8 @@ package aiss.videominer.model;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.persistence.*;
 
+import java.util.UUID;
+
 /**
  * @author Juan C. Alonso
  */
@@ -11,9 +13,8 @@ import jakarta.persistence.*;
 public class User {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @JsonProperty("id")
-    private Long id;
+    private String id;
 
     @JsonProperty("name")
     // @NotEmpty(message = "User name cannot be empty")
@@ -28,11 +29,11 @@ public class User {
     @Column(name = "picture_link")
     private String picture_link;
 
-    public Long getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(String id) {
         this.id = id;
     }
 
@@ -70,4 +71,10 @@ public class User {
                 '}';
     }
 
+    @PrePersist
+    public void generateIdIfAbsent() {
+        if (this.id == null ) {
+            this.id = UUID.randomUUID().toString();
+        }
+    }
 }

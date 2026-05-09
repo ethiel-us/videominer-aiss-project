@@ -25,16 +25,11 @@ public class Transformer {
     public VMUser transformUser(User user) {
         if (user == null) return null;
 
-        String avatarUri = null;
-        if (user.getAvatar_720_url() != null && !user.getAvatar_720_url().isEmpty()) {
-            avatarUri = user.getAvatar_720_url();
-        }
-
         return VMUser.of(
-                null,
+                user.getId(),
                 user.getScreenname(),
                 user.getUrl(),
-                avatarUri
+                user.getAvatar_720_url()
         );
     }
 

@@ -55,7 +55,7 @@ public class CommentController {
     public Comment getCommentById(
             @Parameter(description = "Comment ID") @PathVariable String id) throws ResourceNotFoundException {
         return repository.findById(id)
-                .orElseThrow(() -> new ResourceNotFoundException("Comment not found with id: " + id));
+                .orElseThrow(() -> new ResourceNotFoundException("Comment with id: " + id + " not found"));
     }
 
 }
