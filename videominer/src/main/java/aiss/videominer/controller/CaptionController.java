@@ -35,7 +35,8 @@ public class CaptionController {
     @ApiResponse(
             responseCode = "200",
             description = "List of captions retrieved succesfully",
-            content = @Content(array = @ArraySchema(schema = @Schema(implementation = Caption.class))))
+            content = @Content(array = @ArraySchema(schema = @Schema(implementation = Caption.class)))
+    )
     @GetMapping
     public List<Caption> getAllCaptions() {
         return repository.findAll();
@@ -46,8 +47,10 @@ public class CaptionController {
             description = "Returns a specific caption by ID"
     )
     @ApiResponses({
-            @ApiResponse(responseCode = "200", description = "Caption found",
-                    content = {@Content(schema = @Schema(implementation = Caption.class), mediaType = "application/json")}),
+            @ApiResponse(
+                    responseCode = "200", description = "Caption found",
+                    content = {@Content(schema = @Schema(implementation = Caption.class), mediaType = "application/json")}
+            ),
             @ApiResponse(responseCode = "404", description = "Caption not found")
     })
     @GetMapping("/{id}")

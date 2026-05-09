@@ -38,7 +38,8 @@ public class VideoController {
     @ApiResponse(
             responseCode = "200",
             description = "List of all videos retrieved succesfully",
-            content = @Content(array = @ArraySchema(schema = @Schema(implementation = Video.class))))
+            content = @Content(array = @ArraySchema(schema = @Schema(implementation = Video.class)))
+    )
     @GetMapping
     public List<Video> getAllVideos() {
         return repository.findAll();

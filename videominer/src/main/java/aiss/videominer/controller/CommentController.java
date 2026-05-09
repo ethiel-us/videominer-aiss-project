@@ -35,7 +35,8 @@ public class CommentController {
     @ApiResponse(
             responseCode = "200",
             description = "List of comments retrieved succesfully",
-            content = @Content(array = @ArraySchema(schema = @Schema(implementation = Comment.class))))
+            content = @Content(array = @ArraySchema(schema = @Schema(implementation = Comment.class)))
+    )
     @GetMapping
     public List<Comment> getAllComments() {
         return repository.findAll();

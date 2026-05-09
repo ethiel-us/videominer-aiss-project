@@ -71,7 +71,7 @@ public class Transformer {
         );
 
         vmVideo.setComments(comments);
-        captions.stream().forEach(c->c.setId(v.getUuid()+c.getId()));
+        captions.stream().forEach(c->c.setId(v.getId()+c.getId()));
         vmVideo.setCaptions(captions);
 
         return vmVideo;
