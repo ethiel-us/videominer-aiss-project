@@ -71,7 +71,10 @@ public class Transformer {
         );
 
         vmVideo.setComments(comments);
-        captions.stream().forEach(c->c.setId(v.getId()+c.getId()));
+
+        // Since Peertube does not provide an ID for captions,
+        // we need to add it manually being the video ID plus the language ID
+        captions.forEach(c->c.setId(v.getId()+c.getId()));
         vmVideo.setCaptions(captions);
 
         return vmVideo;

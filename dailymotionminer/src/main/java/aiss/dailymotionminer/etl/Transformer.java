@@ -7,6 +7,7 @@ import aiss.dailymotionminer.model.videominer.*;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
+import java.util.UUID;
 
 /**
  * Transformer class responsible for mapping Dailymotion resources into VideoMiner resources.
@@ -41,9 +42,9 @@ public class Transformer {
         if (tag == null) return null;
 
         return VMComment.of(
-                "",
+                UUID.randomUUID().toString(), // Auto-generated since the Dailymotion API does not provide an ID for tags
                 tag,
-                "");
+                null); // This will be added in the transformVideo method
     }
 
     public VMCaption transformCaption(Subtitle subtitle) {
@@ -67,6 +68,7 @@ public class Transformer {
                 null
         );
 
+        comments.forEach(c -> c.setCreatedOn(vmVideo.getReleaseTime()));
         vmVideo.setComments(comments);
         vmVideo.setCaptions(captions);
 
