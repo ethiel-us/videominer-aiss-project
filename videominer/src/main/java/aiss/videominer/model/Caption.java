@@ -18,7 +18,7 @@ public class Caption {
     private String id;
 
     @JsonProperty("name")
-    @Column(name = "name")
+    @Column(name = "name", columnDefinition = "TEXT")
     @NotBlank(message = "Caption name cannot be blank")
     private String name;
 
